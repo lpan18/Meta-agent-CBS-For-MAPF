@@ -3,12 +3,9 @@ import argparse
 import glob
 from pathlib import Path
 from cbs import CBSSolver
-from independent import IndependentSolver
-from prioritized import PrioritizedPlanningSolver
+from meta_agent_cbs import MetaAgentCBSSolver
 from visualize import Animation
 from single_agent_planner import get_sum_of_cost
-
-SOLVER = "CBS"
 
 def print_mapf_instance(my_map, starts, goals):
     print('Start locations')
@@ -71,20 +68,21 @@ def import_mapf_instance(filename):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Runs various MAPF algorithms')
-    parser.add_argument('--instance', type=str, default=None,
+    parser.add_argument('-i', dest='instance', type=str, default=None,
                         help='The name of the instance file(s)')
     parser.add_argument('--batch', action='store_true', default=False,
                         help='Use batch output instead of animation')
     parser.add_argument('--disjoint', action='store_true', default=False,
                         help='Use the disjoint splitting')
-    parser.add_argument('--solver', type=str, default=SOLVER,
-                        help='The solver to use (one of: {CBS,Independent,Prioritized}), defaults to ' + str(SOLVER))
+    parser.add_argument('-s', dest='solver', type=str, default="MetaCBS",
+                        help='The solver to use (one of: {CBS,MetaCBS,Independent,Prioritized}), defaults to ' + str(SOLVER))
+    parser.add_argument('-b', dest='merge_thresh', type=int, default=10,
+                        help='Merge threshold for Meta-CBS')
 
     args = parser.parse_args()
 
 
     result_file = open("results.csv", "w", buffering=1)
-    # result_file = open("task5_results.csv", "w", buffering=1)
 
     for file in sorted(glob.glob(args.instance)):
 
@@ -96,14 +94,10 @@ if __name__ == '__main__':
             print("***Run CBS***")
             cbs = CBSSolver(my_map, starts, goals)
             paths = cbs.find_solution(args.disjoint)
-        elif args.solver == "Independent":
-            print("***Run Independent***")
-            solver = IndependentSolver(my_map, starts, goals)
-            paths = solver.find_solution()
-        elif args.solver == "Prioritized":
-            print("***Run Prioritized***")
-            solver = PrioritizedPlanningSolver(my_map, starts, goals)
-            paths = solver.find_solution()
+        elif args.solver == "MetaCBS":
+            print("***Run MetaCBS***")
+            cbs = MetaAgentCBSSolver(my_map, starts, goals, args.merge_thresh)
+            paths = cbs.find_solution(args.disjoint)
         else:
             raise RuntimeError("Unknown solver!")
 

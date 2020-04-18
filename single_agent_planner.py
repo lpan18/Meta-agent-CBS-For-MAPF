@@ -62,6 +62,7 @@ def build_constraint_table(constraints, agent):
         constraint_table.append([])
 
     # Add constraint to the constraint_table
+    # TODO question agent -> meta-agent????
     for constraint in constraints:
         if 'positive' in constraint and constraint['positive']:
             if constraint['agent'] == agent:

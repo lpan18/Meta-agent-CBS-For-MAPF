@@ -1,5 +1,5 @@
 __pycache__/
-instances/test*
+instances/exp*
 *.pyc
 *.DS_Store
 results.csv
