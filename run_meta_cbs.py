@@ -1,14 +1,8 @@
 #!/usr/bin/python
-import argparse
 import glob
 from pathlib import Path
 from cbs import CBSSolver
-from independent import IndependentSolver
-from prioritized import PrioritizedPlanningSolver
 from visualize import Animation
-from single_agent_planner import get_sum_of_cost
-
-SOLVER = "CBS"
 
 def print_mapf_instance(my_map, starts, goals):
     print('Start locations')
