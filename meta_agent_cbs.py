@@ -21,17 +21,17 @@ def detect_collision_two_group(paths, groups, i, j):
             collision = detect_collision(paths[agent1], paths[agent2]) # paths need to be in order of agents
             if collision is not None:
                 # save conflict group index
-                return {'a1': i, 'a2': j, 'loc': collision['loc'], 'timestep': collision['timestep']}
+                return {'group1': i, 'group2': j, 'a1': agent1, 'a2': agent2, 'loc': collision['loc'], 'timestep': collision['timestep']}
     return None
 
 def standard_splitting(collision):
     # 'group': the group it belongs to , 'agent': the agents that have the constraint
-    constraint1 = {'group': collision['a1'], 'agent': collision['a1'], 'loc': collision['loc'], 'timestep': collision['timestep'], 'positive': False}
-    constraint2 = {'group': collision['a2'], 'agent': collision['a2'], 'loc': collision['loc'], 'timestep': collision['timestep'], 'positive': False}
+    constraint1 = {'group': collision['group1'], 'agent': collision['a1'], 'loc': collision['loc'], 'timestep': collision['timestep'], 'positive': False}
+    constraint2 = {'group': collision['group2'], 'agent': collision['a2'], 'loc': collision['loc'], 'timestep': collision['timestep'], 'positive': False}
     if len(collision['loc']) != 1: # edge - reverse second constraint location list
         loc = collision['loc'][:]
         loc.reverse()
-        constraint2 = {'group': collision['a2'], 'agent': collision['a2'], 'loc': loc, 'timestep': collision['timestep'], 'positive': False}
+        constraint2 = {'group': collision['group2'], 'agent': collision['a2'], 'loc': loc, 'timestep': collision['timestep'], 'positive': False}
     return [constraint1, constraint2]
 
 """Count number of collision between two meta-agents"""
@@ -136,10 +136,10 @@ class MetaAgentCBSSolver(object):
             if new_collision is None:
                 self.print_results(curr)
                 return curr['paths']
-            new_constraints = standard_splitting(new_collision)
+            
             # check should merge
-            group_idx1 = new_collision['a1']
-            group_idx2 = new_collision['a2']
+            group_idx1 = new_collision['group1']
+            group_idx2 = new_collision['group2']
             group1 = curr['groups'][group_idx1]
             group2 = curr['groups'][group_idx2]
             cnt = count_collision(self.conflict_matrix, group1, group2)
@@ -175,6 +175,7 @@ class MetaAgentCBSSolver(object):
                     self.push_node(child)
                 continue            
             else: # basic CBS
+                new_constraints = standard_splitting(new_collision)
                 for constraint in new_constraints:
                     child = init_node_from_parent(curr)
                     child['constraints'].append(constraint)
