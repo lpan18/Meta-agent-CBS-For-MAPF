@@ -56,6 +56,7 @@ def build_constraint_table(constraints, agent):
     # Obtain max_timestep and initialize constraint_table
     max_timestep = -1
     for constraint in constraints:
+        print(constraint)
         max_timestep = max(max_timestep, constraint['timestep'])
     constraint_table = []
     for i in range(0, max_timestep + 1):
