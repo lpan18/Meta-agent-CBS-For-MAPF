@@ -1,6 +1,7 @@
 import time as timer
 import heapq
 import random
+import copy
 from single_agent_planner import compute_heuristics, a_star, get_location, get_sum_of_cost
 
 
@@ -129,7 +130,7 @@ class CBSSolver(object):
         self.num_of_expanded += 1
         return node
 
-    def find_solution(self, disjoint=True):
+    def find_solution(self, disjoint=True, meta_constraints=None):   # add constraint as param to support low lever search for meta agent cbs
         """ Finds paths for all agents from their start locations to their goal locations
 
         disjoint    - use disjoint splitting or not
@@ -146,6 +147,8 @@ class CBSSolver(object):
                 'constraints': [],
                 'paths': [],
                 'collisions': []}
+        if meta_constraints != None:
+            root['constraints'] = copy.copy(meta_constraints)
         for i in range(self.num_of_agents):  # Find initial path for each agent
             path = a_star(self.my_map, self.starts[i], self.goals[i], self.heuristics[i],
                           i, root['constraints'])
@@ -208,6 +211,11 @@ class CBSSolver(object):
                                 'collisions': detect_collisions(child_paths)}
                         self.push_node(child)
         # print("Expanded nodes list: {}".format(str(expanded_nodes)))
+
+        if meta_constraints != None:
+            return None
+
+        # why return paths of root when no solution found
         self.print_results(root)
         return root['paths']
 

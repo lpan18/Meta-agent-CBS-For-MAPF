@@ -3,7 +3,7 @@ import heapq
 import random
 import copy
 from single_agent_planner import compute_heuristics, a_star, get_location, get_sum_of_cost
-from cbs import detect_collision, paths_violate_constraint
+from cbs import detect_collision, paths_violate_constraint, CBSSolver
 
 """detect collision between all groups"""
 def detect_collisions(paths, groups):
@@ -102,10 +102,8 @@ class MetaAgentCBSSolver(object):
         self.num_of_expanded += 1
         return node
 
-    def find_solution(self, disjoint=True):
+    def find_solution(self):
         """ Finds paths for all agents from their start locations to their goal locations
-
-        disjoint    - use disjoint splitting or not
         """
 
         self.start_time = timer.time()
@@ -131,14 +129,7 @@ class MetaAgentCBSSolver(object):
         root['collisions'] = detect_collisions(root['paths'], root['groups'])
         self.push_node(root)
 
-        ##############################
-        # Task 3.3: High-Level Search
-        #           Repeat the following as long as the open list is not empty:
-        #             1. Get the next node from the open list (you can use self.pop_node()
-        #             2. If this node has no collision, return solution
-        #             3. Otherwise, choose the first collision and convert to a list of constraints (using your
-        #                standard_splitting function). Add a new child node to your open list for each constraint
-        #           Ensure to create a copy of any objects that your child nodes might inherit
+        # High level search
         while len(self.open_list) > 0:
             curr = self.pop_node()
             new_collision = detect_collisions(curr['paths'], curr['groups'])
@@ -157,7 +148,7 @@ class MetaAgentCBSSolver(object):
                 child = init_node_from_parent(curr)
                 new_group = sorted(group1 + group2)
                 # update constraints
-                update_constraints(new_group, group_idx1, group_idx2, child)
+                update_constraints(new_group, group_idx1, group_idx2, child) 
 
                 child['groups'][group_idx1] = new_group
                 child['groups'].pop(group_idx2)
@@ -165,7 +156,7 @@ class MetaAgentCBSSolver(object):
                 # update solutions
                 child_paths = child['paths']
                 agents_need_update = []
-                agents_need_update.append( child['groups'][group_idx1])
+                agents_need_update.append(child['groups'][group_idx1])
                 keep = True
                 print(agents_need_update)
                 for j in agents_need_update:
@@ -173,7 +164,13 @@ class MetaAgentCBSSolver(object):
                     if child_paths[j] is None:
                         keep = False
                         break
-                if keep:
+                # use cbs with disjoint as low level search algorithm (just for testing use)
+                cbs = CBSSolver(self.my_map, [self.starts[m] for m in agents_need_update], [self.goals[m] for m in agents_need_update])
+                path_ = cbs.find_solution(meta_constraints=[child['constraints'][m] for m in agents_need_update])
+                if path_ != None:
+                    # update paths
+                    for (idx, m) in enumerate(agents_need_update):
+                        child['paths'][m] = copy.copy(path_[idx])
                     child['cost'] = get_sum_of_cost(child_paths)
                     self.push_node(child)
                 continue            
