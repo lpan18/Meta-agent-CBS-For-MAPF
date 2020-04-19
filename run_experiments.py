@@ -48,9 +48,9 @@ def import_mapf_instance(filename):
         my_map.append([])
         for cell in line:
             if cell == '@':
-                my_map[-1].append(True)
+                my_map[-1].append(1)
             elif cell == '.':
-                my_map[-1].append(False)
+                my_map[-1].append(0)
     # #agents
     line = f.readline()
     num_agents = int(line)
@@ -63,6 +63,7 @@ def import_mapf_instance(filename):
         starts.append((sx, sy))
         goals.append((gx, gy))
     f.close()
+    print(my_map)
     return my_map, starts, goals
 
 
@@ -75,7 +76,7 @@ if __name__ == '__main__':
     parser.add_argument('--disjoint', action='store_true', default=False,
                         help='Use the disjoint splitting')
     parser.add_argument('-s', dest='solver', type=str, default="MetaCBS",
-                        help='The solver to use (one of: {CBS,MetaCBS,Independent,Prioritized}), defaults to ' + str(SOLVER))
+                        help='The solver to use (one of: {CBS,MetaCBS})')
     parser.add_argument('-b', dest='merge_thresh', type=int, default=10,
                         help='Merge threshold for Meta-CBS')
 
