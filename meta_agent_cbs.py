@@ -115,10 +115,18 @@ def compute_paths(map, starts, goals, heuristics, agents_need_update, child, gro
         meta_constraints = []
         for constraint in child['constraints']:
             if constraint['group'] == group_idx:
-                for agent in constraint['agent']:
-                    meta_constraints.append(copy.copy(constraint))
-                    meta_constraints[len(meta_constraints)-1]['agent'] = agents_mapping[agent]
-        planner = constrained_od_mstar.Constrained_Od_Mstar(map, t_starts, t_goals, convert_cons(meta_constraints, len(t_starts)), epeastar=epeastar, astar=astar)
+                print(constraint)
+                meta_constraints.append(copy.copy(constraint))
+                # update agent idx
+                new_agent = [agents_mapping[a] for a in constraint['agent']]
+                meta_constraints[len(meta_constraints)-1]['agent'] = new_agent
+        if len(meta_constraints) != 0 :
+            t_constraints = convert_cons(meta_constraints)
+            print("agents: " + str(agents_need_update) + " cons: " + str(t_constraints))
+        else:
+            t_constraints = (tuple(agents_need_update), ())
+        # print(t_constraints)
+        planner = constrained_od_mstar.Constrained_Od_Mstar(map, t_starts, t_goals, t_constraints, epeastar=epeastar, astar=astar)
         path = planner.find_path_time_pad(t_starts)
         if path is None:
             return False
