@@ -4,3 +4,5 @@ instances/exp*
 *.DS_Store
 results.csv
 t.py
+test.py
+.idea/

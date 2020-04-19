@@ -1,8 +1,8 @@
 import time as timer
 from low_level import SortedCollection, workspace_graph, col_set_addition
 from low_level.col_set_addition import NoSolutionError, OutOfTimeError
+from low_level.helper import con_get_robots, con_subset_robots, con_get_max_time, con_is_constrained
 from collections import defaultdict
-from helper import con_get_robots, con_subset_robots, con_get_max_time, con_is_constrained
 
 MAX_COST = 1000000
 

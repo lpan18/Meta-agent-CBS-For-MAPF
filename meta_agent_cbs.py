@@ -5,7 +5,7 @@ import copy
 from single_agent_planner import compute_heuristics, a_star, get_location, get_sum_of_cost
 from cbs import detect_collision, paths_violate_constraint
 from low_level import constrained_od_mstar
-from helper import convert_cons, convert_path
+from low_level.helper import convert_cons, convert_path
 
 # if True - > use EPEA* instead of A* or A* + OD
 epeastar=True
@@ -27,18 +27,17 @@ def detect_collision_two_group(paths, groups, i, j):
         for agent2 in groups[j]:
             collision = detect_collision(paths[agent1], paths[agent2]) # paths need to be in order of agents
             if collision is not None:
-                # save conflict group index
-                return {'a1': i, 'a2': j, 'loc': collision['loc'], 'timestep': collision['timestep']}
+                return {'group1': i, 'group2': j, 'a1': groups[i], 'a2': groups[j], 'loc': collision['loc'], 'timestep': collision['timestep']}
     return None
 
 def standard_splitting(collision):
     # 'group': the group it belongs to , 'agent': the agents that have the constraint
-    constraint1 = {'group': collision['a1'], 'agent': collision['a1'], 'loc': collision['loc'], 'timestep': collision['timestep'], 'positive': False}
-    constraint2 = {'group': collision['a2'], 'agent': collision['a2'], 'loc': collision['loc'], 'timestep': collision['timestep'], 'positive': False}
+    constraint1 = {'group': collision['group1'], 'agent': collision['a1'], 'cause': collision['group2'], 'loc': collision['loc'], 'timestep': collision['timestep'], 'positive': False}
+    constraint2 = {'group': collision['group2'], 'agent': collision['a2'], 'cause': collision['group1'], 'loc': collision['loc'], 'timestep': collision['timestep'], 'positive': False}
     if len(collision['loc']) != 1: # edge - reverse second constraint location list
         loc = collision['loc'][:]
         loc.reverse()
-        constraint2 = {'group': collision['a2'], 'agent': collision['a2'], 'loc': loc, 'timestep': collision['timestep'], 'positive': False}
+        constraint2 = {'group': collision['group2'], 'agent': collision['a2'], 'cause': collision['group1'], 'loc': loc, 'timestep': collision['timestep'], 'positive': False}
     return [constraint1, constraint2]
 
 """Count number of collision between two meta-agents"""
@@ -52,40 +51,80 @@ def count_collision(conflict_matrix, group1, group2):
     return count
 
 """Merge constraints"""
-def update_constraints(idx1, idx2, child):
-    # external constraints
-    for constraint in child['constraints']:
-        if constraint['group'] == idx1 or constraint['group'] == idx2:
-            constraint['group'] = idx1
-    # # internal constraints
-    # collisions = child['collisions']
+def update_constraints(group1, group2, group_idx1, group_idx2, child):
+    # loop over all constraints to update them
+    internal_idx = []
+    for (idx, constraint) in enumerate(child['constraints']):
+        # if the group equals to group 1
+        if constraint['group'] == group_idx1:
+            # if the group equals to group 2, it's an internal constraint
+            if constraint['cause'] == group_idx2:
+                # internal constraint should be removed, save its idx first
+                internal_idx.append(idx)
+            # for other cause leave it be
+        elif constraint['group'] == group_idx2:
+            # change group to group 1
+            child['constraints'][idx]['group'] = group_idx1
+            # if the group equals to group 2, it's an internal constriant
+            if constraint['cause'] == group_idx1:
+                # internal constraint should be removed, save its idx first
+                internal_idx.append(idx)
+        elif constraint['cause'] == group_idx2:
+            child['constraints'][idx]['cause'] = group_idx1
+    # remove the internal constraints
+    internal_idx = sorted(internal_idx, reverse=True)
+    for internal_idx_ in internal_idx:
+        child['constraints'].pop(internal_idx_)
+    new_group = sorted(group1 + group2)
+    child['groups'][group_idx1] = new_group
+    # do not remove group 2 after updating constrants
+    # or else the group idx in constraints would be influenced
+    # just make it empty list
+    child['groups'][group_idx2] = []
 
 """Generate a new child"""
 def init_node_from_parent(curr):
     return {'cost': curr['cost'],
             'constraints': list(curr['constraints']),
             'paths': list(curr['paths']),
-            'collisions': list(curr['collisions']),
             'groups': list(curr['groups'])}
 
+def flatten_constraints(constraints):
+    flat_constraints = []
+    for constraint in constraints:
+        for agent in constraint['agent']:
+            flat_constraints.append(copy.copy(constraint))
+            flat_constraints[len(flat_constraints)-1]['agent'] = agent
+    return flat_constraints
+
 """Low-level search"""
-def compute_paths(map, starts, goals, heuristics, meta_agent, child):
-    if len(meta_agent) == 1:
-        agent = meta_agent[0]
-        path = a_star(map, starts[agent], goals[agent], heuristics[agent], agent, child['constraints'])
+def compute_paths(map, starts, goals, heuristics, agents_need_update, child, group_idx=None):
+    if len(agents_need_update) == 1:
+        agent = agents_need_update[0]
+        path = a_star(map, starts[agent], goals[agent], heuristics[agent], agent, flatten_constraints(child['constraints']))
         if path is None:
             return False
         child['paths'][agent] = path
     else:
-        t_starts = tuple(starts[i] for i in meta_agent)
-        t_goals = tuple(goals[i] for i in meta_agent)
-        planner = constrained_od_mstar.Constrained_Od_Mstar(map, t_starts, t_goals, convert_cons(child), epeastar=epeastar, astar=astar)
+        print("testing "+ str(group_idx) + " agents " + str(agents_need_update))
+        t_starts = tuple(starts[i] for i in agents_need_update)
+        t_goals = tuple(goals[i] for i in agents_need_update)
+        agents_mapping = {}
+        for agent in agents_need_update:
+            agents_mapping[agent] = len(agents_mapping)
+        meta_constraints = []
+        for constraint in child['constraints']:
+            if constraint['group'] == group_idx:
+                for agent in constraint['agent']:
+                    meta_constraints.append(copy.copy(constraint))
+                    meta_constraints[len(meta_constraints)-1]['agent'] = agents_mapping[agent]
+        planner = constrained_od_mstar.Constrained_Od_Mstar(map, t_starts, t_goals, convert_cons(meta_constraints, len(t_starts)), epeastar=epeastar, astar=astar)
         path = planner.find_path_time_pad(t_starts)
+        if path is None:
+            return False
         path = convert_path(path)
-        j = 0
-        for i in meta_agent:
-            child['paths'][i] = path[j]
-            j += 1
+        for (idx, m) in enumerate(agents_need_update):
+            child['paths'][m] = path[idx]
     return True
 
 class MetaAgentCBSSolver(object):
@@ -117,33 +156,25 @@ class MetaAgentCBSSolver(object):
         self.conflict_matrix = [[0 for i in range(self.num_of_agents)] for j in range(self.num_of_agents)]
 
     def push_node(self, node):
-        heapq.heappush(self.open_list, (node['cost'], len(node['collisions']), self.num_of_generated, node))
+        heapq.heappush(self.open_list, (node['cost'], self.num_of_generated, node))
         # print("Generate node {}".format(self.num_of_generated))
         self.num_of_generated += 1
 
     def pop_node(self):
-        _, _, id, node = heapq.heappop(self.open_list)
+        _, id, node = heapq.heappop(self.open_list)
         # print("Expand node {}".format(id))
         self.num_of_expanded += 1
         return node
 
-    def find_solution(self, disjoint=True):
+    def find_solution(self):
         """ Finds paths for all agents from their start locations to their goal locations
-
-        disjoint    - use disjoint splitting or not
         """
 
         self.start_time = timer.time()
-
-        # Generate the root node
-        # constraints   - list of constraints
-        # paths         - list of paths, one for each agent
-        #               [[(x11, y11), (x12, y12), ...], [(x21, y21), (x22, y22), ...], ...]
         init_groups = list([i, ] for i in range(self.num_of_agents))
         root = {'cost': 0,
                 'constraints': [],
                 'paths': [],
-                'collisions': [],
                 'groups': init_groups}
         for i in range(self.num_of_agents):  # Find initial path for each agent
             path = a_star(self.my_map, self.starts[i], self.goals[i], self.heuristics[i],
@@ -153,28 +184,20 @@ class MetaAgentCBSSolver(object):
             root['paths'].append(path)
 
         root['cost'] = get_sum_of_cost(root['paths'])
-        root['collisions'] = detect_collisions(root['paths'], root['groups'])
         self.push_node(root)
 
-        ##############################
-        # Task 3.3: High-Level Search
-        #           Repeat the following as long as the open list is not empty:
-        #             1. Get the next node from the open list (you can use self.pop_node()
-        #             2. If this node has no collision, return solution
-        #             3. Otherwise, choose the first collision and convert to a list of constraints (using your
-        #                standard_splitting function). Add a new child node to your open list for each constraint
-        #           Ensure to create a copy of any objects that your child nodes might inherit
+        # High-Level Search
         while len(self.open_list) > 0:
             curr = self.pop_node()
+            # print(curr)
             new_collision = detect_collisions(curr['paths'], curr['groups'])
             if new_collision is None:
+                # print(curr['paths'])
                 self.print_results(curr)
-                print(curr['paths'])
                 return curr['paths']
-            new_constraints = standard_splitting(new_collision)
             # check should merge
-            group_idx1 = new_collision['a1']
-            group_idx2 = new_collision['a2']
+            group_idx1 = new_collision['group1']
+            group_idx2 = new_collision['group2']
             group1 = curr['groups'][group_idx1]
             group2 = curr['groups'][group_idx2]
             cnt = count_collision(self.conflict_matrix, group1, group2)
@@ -182,38 +205,21 @@ class MetaAgentCBSSolver(object):
                 print("Merging meta-agents {} and {} with total conflict count {}".format(group1, group2, cnt))
                 child = init_node_from_parent(curr)
                 # update constraints
-                update_constraints(group_idx1, group_idx2, child)
-                new_group = sorted(group1 + group2)
-                child['groups'][group_idx1] = new_group
-                child['groups'].pop(group_idx2)
+                update_constraints(group1, group2, group_idx1, group_idx2, child)
                 # update solutions
-                agents_need_update = []
-                agents_need_update.append(child['groups'][group_idx1])
-                keep = True
-                # print(agents_need_update)
-                for meta_agent in agents_need_update:
-                    keep = compute_paths(self.my_map, self.starts, self.goals, self.heuristics, meta_agent, child)
-                    if not keep:
-                        break
+                agents_need_update = child['groups'][group_idx1]
+                keep = compute_paths(self.my_map, self.starts, self.goals, self.heuristics, agents_need_update, child, group_idx1)
                 if keep:
                     child['cost'] = get_sum_of_cost(child['paths'])
                     self.push_node(child)
-                continue            
+                continue
             else: # basic CBS
+                new_constraints = standard_splitting(new_collision)
                 for constraint in new_constraints:
                     child = init_node_from_parent(curr)
                     child['constraints'].append(constraint)
-                    child['collisions'].append(new_collision)
-                    agents_need_update = [] #[[],[]]
-                    if constraint['positive']:
-                        agents_need_update = paths_violate_constraint(constraint, child['paths'])
-                    else:
-                        agents_need_update.append(child['groups'][constraint['group']])
-                    keep = True
-                    for meta_agent in agents_need_update:
-                        keep = compute_paths(self.my_map, self.starts, self.goals, self.heuristics, meta_agent, child)
-                        if not keep:
-                            break
+                    agents_need_update = constraint['agent']
+                    keep = compute_paths(self.my_map, self.starts, self.goals, self.heuristics, agents_need_update, child)
                     if keep:
                         child['cost'] = get_sum_of_cost(child['paths'])
                         self.push_node(child)

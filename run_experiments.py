@@ -63,7 +63,7 @@ def import_mapf_instance(filename):
         starts.append((sx, sy))
         goals.append((gx, gy))
     f.close()
-    print(my_map)
+    # print(my_map)
     return my_map, starts, goals
 
 
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     parser.add_argument('--disjoint', action='store_true', default=False,
                         help='Use the disjoint splitting')
     parser.add_argument('-s', dest='solver', type=str, default="MetaCBS",
-                        help='The solver to use (one of: {CBS,MetaCBS})')
+                        help='The solver to use (one of: {CBS,MetaCBS,Independent,Prioritized}), defaults to MetaCBS')
     parser.add_argument('-b', dest='merge_thresh', type=int, default=10,
                         help='Merge threshold for Meta-CBS')
 
@@ -97,8 +97,8 @@ if __name__ == '__main__':
             paths = cbs.find_solution(args.disjoint)
         elif args.solver == "MetaCBS":
             print("***Run MetaCBS***")
-            cbs = MetaAgentCBSSolver(my_map, starts, goals, args.merge_thresh)
-            paths = cbs.find_solution(args.disjoint)
+            ma_cbs = MetaAgentCBSSolver(my_map, starts, goals, args.merge_thresh)
+            paths = ma_cbs.find_solution()
         else:
             raise RuntimeError("Unknown solver!")
 
