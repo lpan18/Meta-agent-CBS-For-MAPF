@@ -213,9 +213,6 @@ class MetaAgentCBSSolver(object):
                 for agent in agents_need_update:
                     agents_mapping[agent] = len(agents_mapping)
                 meta_constraints = []
-                print('cccccc----', child['constraints'])
-                if len([self.starts[m] for m in agents_need_update]) > 2:
-                    exit(0)
                 for constraint in child['constraints']:
                     if constraint['group'] == group_idx1:
                         for agent in constraint['agent']:
