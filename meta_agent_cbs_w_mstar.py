@@ -97,43 +97,7 @@ def flatten_constraints(constraints):
             flat_constraints[len(flat_constraints)-1]['agent'] = agent
     return flat_constraints
 
-"""Low-level search"""
-def compute_paths(map, starts, goals, heuristics, agents_need_update, child, group_idx=None):
-    if len(agents_need_update) == 1:
-        agent = agents_need_update[0]
-        path = a_star(map, starts[agent], goals[agent], heuristics[agent], agent, flatten_constraints(child['constraints']))
-        if path is None:
-            return False
-        child['paths'][agent] = path
-    else:
-        # print("testing "+ str(group_idx) + " agents " + str(agents_need_update))
-        t_starts = tuple(starts[i] for i in agents_need_update)
-        t_goals = tuple(goals[i] for i in agents_need_update)
-        agents_mapping = {}
-        for agent in agents_need_update:
-            agents_mapping[agent] = len(agents_mapping)
-        meta_constraints = []
-        for constraint in child['constraints']:
-            if constraint['group'] == group_idx:
-                for agent in constraint['agent']:
-                    meta_constraints.append(copy.copy(constraint))
-                    meta_constraints[len(meta_constraints)-1]['agent'] = agents_mapping[agent]
-        if len(meta_constraints) != 0 :
-            t_constraints = convert_cons(meta_constraints)
-            # print("agents: " + str(agents_need_update) + " cons: " + str(t_constraints))
-        else:
-            t_constraints = (tuple(agents_need_update), ())
-        # print(t_constraints)
-        planner = constrained_od_mstar.Constrained_Od_Mstar(map, t_starts, t_goals, t_constraints, epeastar=epeastar, astar=astar)
-        path = planner.find_path_time_pad(t_starts)
-        if path is None:
-            return False
-        path = convert_path(path)
-        for (idx, m) in enumerate(agents_need_update):
-            child['paths'][m] = path[idx]
-    return True
-
-class MetaAgentCBSSolver(object):
+class MetaAgentCBSSolverWithMstar(object):
     """The high-level search of meta-agent CBS."""
 
     def __init__(self, my_map, starts, goals, merge_thresh):
@@ -160,7 +124,9 @@ class MetaAgentCBSSolver(object):
         self.B = merge_thresh
         # Conflict count table
         self.conflict_matrix = [[0 for i in range(self.num_of_agents)] for j in range(self.num_of_agents)]
-
+        # cache computed path {contraint: path}
+        self.cache = {}
+    
     def push_node(self, node):
         heapq.heappush(self.open_list, (node['cost'], self.num_of_generated, node))
         # print("Generate node {}".format(self.num_of_generated))
@@ -171,6 +137,45 @@ class MetaAgentCBSSolver(object):
         # print("Expand node {}".format(id))
         self.num_of_expanded += 1
         return node
+    
+    """Low-level search"""
+    def compute_paths(self, agents_need_update, child, group_idx=None):
+        if len(agents_need_update) == 1:
+            agent = agents_need_update[0]
+            path = a_star(self.my_map, self.starts[agent], self.goals[agent], self.heuristics[agent], agent, flatten_constraints(child['constraints']))
+            if path is None:
+                return False
+            child['paths'][agent] = path
+        else:
+            t_starts = tuple(self.starts[i] for i in agents_need_update)
+            t_goals = tuple(self.goals[i] for i in agents_need_update)
+            agents_mapping = {}
+            for agent in agents_need_update:
+                agents_mapping[agent] = len(agents_mapping)
+            new_agents = [agents_mapping[a] for a in agents_need_update]
+            meta_constraints = []
+            for constraint in child['constraints']:
+                if constraint['agent'] == agents_need_update:
+                    meta_constraints.append(copy.copy(constraint))
+                    meta_constraints[len(meta_constraints)-1]['agent'] = new_agents
+            if len(meta_constraints) != 0 :
+                t_constraints = convert_cons(meta_constraints)
+                # print("agents: " + str(agents_need_update) + " cons: " + str(t_constraints))
+            else:
+                t_constraints = (tuple(agents_need_update), ())
+            key = (t_starts, t_constraints)
+            if key in self.cache:
+                path = self.cache[key]
+            else:
+                planner = constrained_od_mstar.Constrained_Od_Mstar(self.my_map, t_starts, t_goals, t_constraints, epeastar=epeastar, astar=astar)
+                path = planner.find_path_time_pad(t_starts)
+                self.cache[key] = path
+            if path is None:
+                return False
+            path = convert_path(path)
+            for (idx, m) in enumerate(agents_need_update):
+                child['paths'][m] = path[idx]
+        return True
 
     def find_solution(self):
         """ Finds paths for all agents from their start locations to their goal locations
@@ -194,8 +199,9 @@ class MetaAgentCBSSolver(object):
 
         # High-Level Search
         while len(self.open_list) > 0:
+            if timer.time() - self.start_time  > 10:
+                raise Exception('time out')
             curr = self.pop_node()
-            # print("curr", curr)
             new_collision = detect_collisions(curr['paths'], curr['groups'])
             if new_collision is None:
                 # print(curr['paths'])
@@ -214,7 +220,7 @@ class MetaAgentCBSSolver(object):
                 update_constraints(group1, group2, group_idx1, group_idx2, child)
                 # update solutions
                 agents_need_update = child['groups'][group_idx1]
-                keep = compute_paths(self.my_map, self.starts, self.goals, self.heuristics, agents_need_update, child, group_idx1)
+                keep = self.compute_paths(agents_need_update, child, group_idx1)
                 # print("keep", keep)
                 if keep:
                     child['cost'] = get_sum_of_cost(child['paths'])
@@ -227,7 +233,7 @@ class MetaAgentCBSSolver(object):
                     child = init_node_from_parent(curr)
                     child['constraints'].append(constraint)
                     agents_need_update = constraint['agent']
-                    keep = compute_paths(self.my_map, self.starts, self.goals, self.heuristics, agents_need_update, child)
+                    keep = self.compute_paths(agents_need_update, child)
                     if keep:
                         child['cost'] = get_sum_of_cost(child['paths'])
                         self.push_node(child)

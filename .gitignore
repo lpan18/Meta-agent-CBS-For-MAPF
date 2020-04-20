@@ -1,9 +1,7 @@
 __pycache__/
-instances/exp*
+instances/
 *.pyc
 *.DS_Store
 results.csv
-t.py
-test.py
 .idea/
 test/

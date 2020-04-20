@@ -2,43 +2,30 @@ import copy
 import bisect
 
 def convert_cons(constraints):
-    tl = {}
-    for constraint in constraints:
-        agent = (constraint['agent'],)
-        time = constraint['timestep']
-        loc = tuple(constraint['loc'],)
-        if agent in tl:
-            tl[agent].append((time,loc))
-        else:
-            tl[agent] = [(time,loc)]
-
-    cons = []
-    for k in tl:
-        c = (k,tuple(tl[k]))
-        cons.append(c)
-    cons = tuple(sorted(cons))
+    #[{'group': 0, 'agent': [0,1], 'cause': 2, 'loc': [(1, 2), (1, 3)], 'timestep': 1, 'positive': False}, {'group': 0, 'agent': [0,1], 'cause': 2, 'loc': [(1, 2), (1, 3)], 'timestep': 2, 'positive': False}]
+    # ((0, 1), ((1, ((1, 3),)),))
+    agent = tuple(constraints[0]['agent'])
+    tl = []
+    for con in constraints:
+        tl.append((con['timestep'], tuple(con['loc'],)))
+    tl.sort()
+    cons = (agent,tuple(tl))
+    # print(cons)
     return cons
 
 def con_get_robots(constraint):
-    con = copy.deepcopy(constraint)
-    if len(constraint) == 1:
-        con = con[0]
-    return con[0]
+    # print(constraint)
+    # con = copy.deepcopy(constraint)
+    return constraint[0]
 
 def con_subset_robots(constraint, robots):
-    con = copy.deepcopy(constraint)
-    if len(constraint) == 1:
-        con = con[0]
-    print("subset", tuple(sorted(robots)), con[1])
-    return (tuple(sorted(robots)), con[1])
+    # con = copy.deepcopy(constraint)
+    return (tuple(sorted(robots)), constraint[1])
 
 def con_get_max_time(constraint):
-    con = copy.deepcopy(constraint)
-    if len(constraint) == 1:
-        con = con[0]
-    if len(con[1]) == 0:
+    if len(constraint[1]) == 0:
         return 0
-    return con[1][-1][0]
+    return constraint[1][-1][0]
 
 def con_is_constrained(constraint, time, coord1, coord2):
     dex = bisect.bisect_left(constraint[1], (time, ))
