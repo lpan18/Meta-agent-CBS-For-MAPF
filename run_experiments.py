@@ -5,6 +5,7 @@ from pathlib import Path
 from cbs import CBSSolver
 from meta_agent_cbs import MetaAgentCBSSolver
 from meta_agent_cbs_w_cbs import MetaAgentCBSSolverWithCBS
+from meta_agent_cbs_w_mstar import MetaAgentCBSSolverWithMstar
 from visualize import Animation
 from single_agent_planner import get_sum_of_cost
 
@@ -87,32 +88,41 @@ if __name__ == '__main__':
     result_file = open("results.csv", "w", buffering=1)
 
     for file in sorted(glob.glob(args.instance)):
+    # for i in range(48,51):
+    #     file = "instances/test_" + str(i) + ".txt"
+        try:
+            print("***Import an instance***")
+            print("instance file:", file)
+            my_map, starts, goals = import_mapf_instance(file)
+            # print_mapf_instance(my_map, starts, goals)
 
-        print("***Import an instance***")
-        print("instance file:", file)
-        my_map, starts, goals = import_mapf_instance(file)
-        print_mapf_instance(my_map, starts, goals)
+            if args.solver == "CBS":
+                print("***Run CBS***")
+                cbs = CBSSolver(my_map, starts, goals)
+                paths = cbs.find_solution(args.disjoint)
+            elif args.solver == "MetaCBS":
+                print("***Run MetaCBS***")
+                ma_cbs = MetaAgentCBSSolver(my_map, starts, goals, args.merge_thresh)
+                paths = ma_cbs.find_solution()
+            elif args.solver == "MetaCBSwCBS":
+                print("***Run MetaCBS with CBS as low level solver***")
+                ma_cbs = MetaAgentCBSSolverWithCBS(my_map, starts, goals, args.merge_thresh)
+                paths = ma_cbs.find_solution()
+                print("***Finished Run MetaCBS with CBS as low level solver***")
+            elif args.solver == "MetaCBSwMstar":
+                print("***Run MetaCBS with Mstar as low level solver***")
+                ma_cbs = MetaAgentCBSSolverWithMstar(my_map, starts, goals, args.merge_thresh)
+                paths = ma_cbs.find_solution()
+                print("***Finished Run MetaCBS with Mstar as low level solver***")
+            else:
+                raise RuntimeError("Unknown solver!")
 
-        if args.solver == "CBS":
-            print("***Run CBS***")
-            cbs = CBSSolver(my_map, starts, goals)
-            paths = cbs.find_solution(args.disjoint)
-        elif args.solver == "MetaCBS":
-            print("***Run MetaCBS***")
-            ma_cbs = MetaAgentCBSSolver(my_map, starts, goals, args.merge_thresh)
-            paths = ma_cbs.find_solution()
-        elif args.solver == "MetaCBSwCBS":
-            print("***Run MetaCBS with CBS as low level solver***")
-            ma_cbs = MetaAgentCBSSolverWithCBS(my_map, starts, goals, args.merge_thresh)
-            paths = ma_cbs.find_solution()
-            print("***Finished Run MetaCBS with CBS as low level solver***")
-        else:
-            raise RuntimeError("Unknown solver!")
-
-        cost = get_sum_of_cost(paths)
-        result_file.write("{},{}\n".format(file, cost))
-
-
+            cost = get_sum_of_cost(paths)
+            result_file.write("{},{}\n".format(file, cost))
+        
+        except Exception as e:
+            result_file.write("Exception {} on file {}\n".format(e, file))
+        
         if not args.batch:
             print("***Test paths on a simulation***")
             animation = Animation(my_map, starts, goals, paths)
