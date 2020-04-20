@@ -4,6 +4,7 @@ import glob
 from pathlib import Path
 from cbs import CBSSolver
 from meta_agent_cbs import MetaAgentCBSSolver
+from meta_agent_cbs_w_cbs import MetaAgentCBSSolverWithCBS
 from visualize import Animation
 from single_agent_planner import get_sum_of_cost
 
@@ -88,6 +89,7 @@ if __name__ == '__main__':
     for file in sorted(glob.glob(args.instance)):
 
         print("***Import an instance***")
+        print("instance file:", file)
         my_map, starts, goals = import_mapf_instance(file)
         print_mapf_instance(my_map, starts, goals)
 
@@ -99,6 +101,11 @@ if __name__ == '__main__':
             print("***Run MetaCBS***")
             ma_cbs = MetaAgentCBSSolver(my_map, starts, goals, args.merge_thresh)
             paths = ma_cbs.find_solution()
+        elif args.solver == "MetaCBSwCBS":
+            print("***Run MetaCBS with CBS as low level solver***")
+            ma_cbs = MetaAgentCBSSolverWithCBS(my_map, starts, goals, args.merge_thresh)
+            paths = ma_cbs.find_solution()
+            print("***Finished Run MetaCBS with CBS as low level solver***")
         else:
             raise RuntimeError("Unknown solver!")
 

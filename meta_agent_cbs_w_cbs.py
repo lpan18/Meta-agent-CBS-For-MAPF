@@ -3,14 +3,7 @@ import heapq
 import random
 import copy
 from single_agent_planner import compute_heuristics, a_star, get_location, get_sum_of_cost
-from cbs import detect_collision, paths_violate_constraint
-from low_level import constrained_od_mstar
-from low_level.helper import convert_cons, convert_path
-
-# if True - > use EPEA* instead of A* or A* + OD
-epeastar=True
-# if True -> use A* instead of A* + OD
-astar=False
+from cbs import detect_collision, paths_violate_constraint, CBSSolver
 
 """detect collision between all groups"""
 def detect_collisions(paths, groups):
@@ -106,9 +99,7 @@ def compute_paths(map, starts, goals, heuristics, agents_need_update, child, gro
             return False
         child['paths'][agent] = path
     else:
-        # print("testing "+ str(group_idx) + " agents " + str(agents_need_update))
-        t_starts = tuple(starts[i] for i in agents_need_update)
-        t_goals = tuple(goals[i] for i in agents_need_update)
+        cbs = CBSSolver(map, [starts[m] for m in agents_need_update], [goals[m] for m in agents_need_update])
         agents_mapping = {}
         for agent in agents_need_update:
             agents_mapping[agent] = len(agents_mapping)
@@ -117,25 +108,19 @@ def compute_paths(map, starts, goals, heuristics, agents_need_update, child, gro
             if constraint['group'] == group_idx:
                 for agent in constraint['agent']:
                     meta_constraints.append(copy.copy(constraint))
+                    # print('agents:', constraint['agent'])
+                    # print('mapping:', agents_mapping)
                     meta_constraints[len(meta_constraints)-1]['agent'] = agents_mapping[agent]
-        if len(meta_constraints) != 0 :
-            t_constraints = convert_cons(meta_constraints)
-            # print("agents: " + str(agents_need_update) + " cons: " + str(t_constraints))
-        else:
-            t_constraints = (tuple(agents_need_update), ())
-        # print(t_constraints)
-        planner = constrained_od_mstar.Constrained_Od_Mstar(map, t_starts, t_goals, t_constraints, epeastar=epeastar, astar=astar)
-        path = planner.find_path_time_pad(t_starts)
+        path = cbs.find_solution(meta_constraints=meta_constraints)
         if path is None:
             return False
-        path = convert_path(path)
         for (idx, m) in enumerate(agents_need_update):
             child['paths'][m] = path[idx]
-        print("path", path)
+        # print("path", path)
     return True
 
-class MetaAgentCBSSolver(object):
-    """The high-level search of meta-agent CBS."""
+class MetaAgentCBSSolverWithCBS(object):
+    """The high-level search of meta-agent CBS with CBS as low level solver."""
 
     def __init__(self, my_map, starts, goals, merge_thresh):
         """my_map   - list of lists specifying obstacle positions
@@ -195,9 +180,9 @@ class MetaAgentCBSSolver(object):
 
         # High-Level Search
         while len(self.open_list) > 0:
-            print("===high-level loop===")
+            # print("===high-level loop===")
             curr = self.pop_node()
-            print("curr", curr)
+            # print("curr", curr)
             new_collision = detect_collisions(curr['paths'], curr['groups'])
             if new_collision is None:
                 # print(curr['paths'])
@@ -217,12 +202,12 @@ class MetaAgentCBSSolver(object):
                 # update solutions
                 agents_need_update = child['groups'][group_idx1]
                 keep = compute_paths(self.my_map, self.starts, self.goals, self.heuristics, agents_need_update, child, group_idx1)
-                print("keep", keep)
+                # print("keep", keep)
                 if keep:
                     child['cost'] = get_sum_of_cost(child['paths'])
-                    print("child", child)
+                    # print("child", child)
                     self.push_node(child)
-                    print("openlist", self.open_list)
+                    # print("openlist", self.open_list)
                 continue
             else: # basic CBS
                 new_constraints = standard_splitting(new_collision)

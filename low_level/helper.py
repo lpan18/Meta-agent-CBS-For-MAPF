@@ -29,7 +29,7 @@ def con_subset_robots(constraint, robots):
     con = copy.deepcopy(constraint)
     if len(constraint) == 1:
         con = con[0]
-    print(tuple(sorted(robots)), con[1])
+    print("subset", tuple(sorted(robots)), con[1])
     return (tuple(sorted(robots)), con[1])
 
 def con_get_max_time(constraint):
