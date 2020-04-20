@@ -106,7 +106,7 @@ def compute_paths(map, starts, goals, heuristics, agents_need_update, child, gro
             return False
         child['paths'][agent] = path
     else:
-        print("testing "+ str(group_idx) + " agents " + str(agents_need_update))
+        # print("testing "+ str(group_idx) + " agents " + str(agents_need_update))
         t_starts = tuple(starts[i] for i in agents_need_update)
         t_goals = tuple(goals[i] for i in agents_need_update)
         agents_mapping = {}
@@ -115,14 +115,12 @@ def compute_paths(map, starts, goals, heuristics, agents_need_update, child, gro
         meta_constraints = []
         for constraint in child['constraints']:
             if constraint['group'] == group_idx:
-                print(constraint)
-                meta_constraints.append(copy.copy(constraint))
-                # update agent idx
-                new_agent = [agents_mapping[a] for a in constraint['agent']]
-                meta_constraints[len(meta_constraints)-1]['agent'] = new_agent
+                for agent in constraint['agent']:
+                    meta_constraints.append(copy.copy(constraint))
+                    meta_constraints[len(meta_constraints)-1]['agent'] = agents_mapping[agent]
         if len(meta_constraints) != 0 :
             t_constraints = convert_cons(meta_constraints)
-            print("agents: " + str(agents_need_update) + " cons: " + str(t_constraints))
+            # print("agents: " + str(agents_need_update) + " cons: " + str(t_constraints))
         else:
             t_constraints = (tuple(agents_need_update), ())
         # print(t_constraints)
@@ -133,6 +131,8 @@ def compute_paths(map, starts, goals, heuristics, agents_need_update, child, gro
         path = convert_path(path)
         for (idx, m) in enumerate(agents_need_update):
             child['paths'][m] = path[idx]
+        print("===")
+        print(path)
     return True
 
 class MetaAgentCBSSolver(object):

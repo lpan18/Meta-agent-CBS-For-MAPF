@@ -64,7 +64,7 @@ class Constrained_Od_Mstar(od_mstar.Od_Mstar):
             self.con_max_t = self.max_t
         if self.out_paths != None:
             self.max_t = max(self.max_t, len(self.out_paths))
-        self.rob_id = con_get_robots(self.constraints)
+        self.rob_id = tuple(i for i in range(len(goals)))#con_get_robots(self.constraints)
         self.heuristic_conf = heuristic_conf
         #Need to have goals in space_time for gen_policy_planner, but need to
         #pass in space-only goals to Od_Mstar
@@ -91,12 +91,6 @@ class Constrained_Od_Mstar(od_mstar.Od_Mstar):
         self.goals = self.tgoals
 
     def gen_policy_planners(self,sub_search,obs_map,goals):
-        '''Creates the sub-planners and necessary policy keys.  This is
-        because pretty much every sub-planner I've made requires adjusting
-        the graph used to create the policies and passing around dummy
-        sub_searches
-
-        side effects to generate self.sub_search and self.policy_keys'''
         goals = self.tgoals
         self.policy_keys= tuple((con_subset_robots(self.constraints,(i,)),
                                  self.path_hash) for i in  self.rob_id)
