@@ -195,7 +195,7 @@ class MetaAgentCBSSolverWithCBS(object):
             group2 = curr['groups'][group_idx2]
             cnt = count_collision(self.conflict_matrix, group1, group2)
             if cnt > self.B: # should-merge
-                print("Merging meta-agents {} and {} with total conflict count {}".format(group1, group2, cnt))
+                # print("Merging meta-agents {} and {} with total conflict count {}".format(group1, group2, cnt))
                 child = init_node_from_parent(curr)
                 # update constraints
                 update_constraints(group1, group2, group_idx1, group_idx2, child)
@@ -205,7 +205,6 @@ class MetaAgentCBSSolverWithCBS(object):
                 # print("keep", keep)
                 if keep:
                     child['cost'] = get_sum_of_cost(child['paths'])
-                    # print("child", child)
                     self.push_node(child)
                     # print("openlist", self.open_list)
                 continue
