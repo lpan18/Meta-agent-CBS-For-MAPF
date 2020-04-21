@@ -1,0 +1,437 @@
+===================
+solver, cost, time, n_exp, n_gen, map_file, scen_file, agents_limit, conflict_bound, success 
+CBSSolver, 91, 0.001, 1, 1, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 5, -, success
+MetaAgCBSWithCBS, 91, 0.006, 1, 1, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 91, 0.005, 1, 1, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 91, 0.006, 1, 1, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 91, 0.003, 1, 1, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 5, 100, success
+CBSSolver, 414, 0.015, 3, 5, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 10, -, success
+MetaAgCBSWithCBS, 322, 0.031, 4, 6, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 10, 1, success
+MetaAgCBSWithCBS, 414, 0.013, 4, 7, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 414, 0.015, 4, 7, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 414, 0.015, 4, 7, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 10, 100, success
+CBSSolver, 432, 0.253, 5, 9, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 15, -, success
+MetaAgCBSWithCBS, 432, 0.223, 5, 9, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 15, 1, success
+MetaAgCBSWithCBS, 432, 0.223, 5, 9, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 15, 5, success
+MetaAgCBSWithCBS, 432, 0.212, 5, 9, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 15, 10, success
+MetaAgCBSWithCBS, 432, 0.233, 5, 9, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 15, 100, success
+CBSSolver, -, 300.01, 21788, 43577, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 20, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 20, 1, Fail:too many values to unpack (expected 4)
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 20, 5, Fail:too many values to unpack (expected 4)
+MetaAgCBSWithCBS, -, 301.99, 20, 21, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 20, 10, timeout
+MetaAgCBSWithCBS, -, 302.51, 110, 201, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 20, 100, timeout
+CBSSolver, -, 300.08, 9792, 17875, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 301.9, 40, 60, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 25, 5, timeout
+MetaAgCBSWithCBS, -, 302.34, 49, 79, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 25, 10, timeout
+MetaAgCBSWithCBS, -, 302.87, 155, 291, more/maps/1/arena.map, more/scenarios/1/arena.map.scen, 25, 100, timeout
+CBSSolver, 671, 0.008, 1, 1, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 5, -, success
+MetaAgCBSWithCBS, 671, 0.012, 1, 1, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 671, 0.022, 1, 1, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 671, 0.012, 1, 1, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 671, 0.012, 1, 1, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 5, 100, success
+CBSSolver, 1796, 0.315, 2, 3, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 10, -, success
+MetaAgCBSWithCBS, 1796, 0.426, 2, 3, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 10, 1, success
+MetaAgCBSWithCBS, 1796, 0.319, 2, 3, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 1796, 0.395, 2, 3, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 1796, 0.333, 2, 3, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 10, 100, success
+CBSSolver, 3086, 0.856, 6, 11, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 15, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 2779, 2.928, 18, 34, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 15, 5, success
+MetaAgCBSWithCBS, 3086, 2.811, 20, 39, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 15, 10, success
+MetaAgCBSWithCBS, 3086, 2.706, 20, 39, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 15, 100, success
+CBSSolver, 3515, 5.674, 12, 22, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 20, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 20, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 3031, 5.269, 67, 132, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 20, 10, success
+MetaAgCBSWithCBS, 3043, 35.939, 393, 784, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 20, 100, success
+CBSSolver, -, 300.03, 1733, 3459, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 25, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 25, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/arena2.map, more/scenarios/1/arena2.map.scen, 25, 100, Fail:object of type 'int' has no len()
+CBSSolver, 687, 0.008, 1, 1, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 687, 0.010, 1, 1, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 687, 0.010, 1, 1, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 687, 0.012, 1, 1, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 687, 0.012, 1, 1, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 5, 100, success
+CBSSolver, -, 300.01, 10194, 20387, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 10, -, timeout
+MetaAgCBSWithCBS, 1648, 0.430, 6, 10, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 10, 1, success
+MetaAgCBSWithCBS, 1648, 0.677, 25, 48, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 1648, 61.466, 47, 88, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, -, 306.02, 185, 351, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 10, 100, timeout
+CBSSolver, 3002, 6.037, 7, 12, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 15, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 2325, 0.779, 21, 40, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 15, 5, success
+MetaAgCBSWithCBS, 2325, 1.199, 24, 46, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 15, 10, success
+MetaAgCBSWithCBS, 3002, 3.058, 108, 215, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 15, 100, success
+CBSSolver, 3547, 216.458, 41, 59, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 20, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 3215, 10.848, 30, 58, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 20, 5, success
+MetaAgCBSWithCBS, 3215, 11.014, 30, 58, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 20, 10, success
+MetaAgCBSWithCBS, 3215, 23.779, 177, 352, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 20, 100, success
+CBSSolver, -, 300.07, 2539, 5077, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 25, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 305.7, 46, 72, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 25, 10, timeout
+MetaAgCBSWithCBS, -, 314.35, 391, 763, more/maps/1/brc000d.map, more/scenarios/1/brc000d.map.scen, 25, 100, timeout
+CBSSolver, 1614, 0.054, 3, 5, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 618, 0.349, 4, 6, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 1614, 0.097, 4, 7, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 1614, 0.072, 4, 7, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 1614, 0.063, 4, 7, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 5, 100, success
+CBSSolver, 2709, 0.442, 8, 15, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 10, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 10, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 2051, 0.563, 19, 36, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 2005, 0.717, 27, 52, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 2709, 2.547, 132, 263, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 10, 100, success
+CBSSolver, 5030, 12.925, 19, 36, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 15, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 15, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 15, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 3852, 13.818, 440, 878, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 15, 100, success
+CBSSolver, -, 304.89, 61, 91, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 20, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 20, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 20, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 20, 100, Fail:object of type 'int' has no len()
+CBSSolver, 9529, 51.659, 59, 113, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 25, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 25, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 25, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc100d.map, more/scenarios/1/brc100d.map.scen, 25, 100, Fail:object of type 'int' has no len()
+CBSSolver, 1685, 0.021, 1, 1, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 1685, 0.024, 1, 1, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 1685, 0.025, 1, 1, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 1685, 0.025, 1, 1, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 1685, 0.023, 1, 1, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 5, 100, success
+CBSSolver, 2040, 0.766, 4, 7, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 10, -, success
+MetaAgCBSWithCBS, 1747, 1.613, 5, 8, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 10, 1, success
+MetaAgCBSWithCBS, 2040, 1.331, 5, 9, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 2040, 1.390, 5, 9, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 2040, 1.337, 5, 9, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 10, 100, success
+CBSSolver, 4178, 34.333, 24, 41, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 15, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 15, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 15, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 3916, 20.381, 652, 1302, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 15, 100, success
+CBSSolver, 6439, 94.374, 54, 107, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 20, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 20, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 20, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 20, 100, Fail:object of type 'int' has no len()
+CBSSolver, -, 304.39, 815, 1612, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 25, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 25, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc200d.map, more/scenarios/1/brc200d.map.scen, 25, 100, Fail:object of type 'int' has no len()
+CBSSolver, 3083, 12.392, 9, 16, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 1775, 10.267, 4, 6, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 1775, 7.564, 8, 14, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 3083, 5.368, 18, 35, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 3083, 5.381, 18, 35, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 5, 100, success
+CBSSolver, -, 316.58, 82, 155, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 10, -, timeout
+MetaAgCBSWithCBS, 2515, 145.244, 17, 25, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 10, 1, success
+MetaAgCBSWithCBS, -, 314.51, 40, 65, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 10, 5, timeout
+MetaAgCBSWithCBS, -, 319.86, 52, 93, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 10, 10, timeout
+MetaAgCBSWithCBS, -, 305.06, 69, 139, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 10, 100, timeout
+CBSSolver, -, 318.67, 111, 208, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 15, -, timeout
+MetaAgCBSWithCBS, -, 306.72, 22, 25, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 15, 1, timeout
+MetaAgCBSWithCBS, -, 342.26, 26, 37, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 15, 5, timeout
+MetaAgCBSWithCBS, -, 305.71, 36, 62, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 15, 10, timeout
+MetaAgCBSWithCBS, -, 342.87, 847, 1684, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 15, 100, timeout
+CBSSolver, -, 324.09, 18, 37, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 20, -, timeout
+MetaAgCBSWithCBS, -, 302.35, 7, 13, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 20, 1, timeout
+MetaAgCBSWithCBS, -, 303.96, 7, 15, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 20, 5, timeout
+MetaAgCBSWithCBS, -, 301.25, 7, 15, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 20, 10, timeout
+MetaAgCBSWithCBS, -, 304.42, 7, 15, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 20, 100, timeout
+CBSSolver, -, 305.73, 87, 140, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 25, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 25, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 321.93, 271, 527, more/maps/1/brc201d.map, more/scenarios/1/brc201d.map.scen, 25, 100, timeout
+CBSSolver, 3784, 0.185, 4, 7, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 2069, 0.782, 4, 6, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 3784, 0.256, 8, 15, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 3784, 0.252, 8, 15, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 3784, 0.246, 8, 15, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 5, 100, success
+CBSSolver, -, 300.03, 5234, 10469, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 10, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 10, 1, Fail:too many values to unpack (expected 4)
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 10, 5, Fail:too many values to unpack (expected 4)
+MetaAgCBSWithCBS, -, 306.6, 20, 21, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 10, 10, timeout
+MetaAgCBSWithCBS, -, 307.43, 110, 201, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 10, 100, timeout
+CBSSolver, -, 335.34, 29, 52, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 15, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 15, 1, Fail:too many values to unpack (expected 4)
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 15, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 15, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 6122, 26.645, 240, 478, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 15, 100, success
+CBSSolver, -, 300.21, 663, 1296, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 20, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 20, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 20, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 345.72, 643, 1274, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 20, 100, timeout
+CBSSolver, -, 303.94, 19, 33, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 25, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 315.6, 31, 47, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 25, 10, timeout
+MetaAgCBSWithCBS, -, 332.06, 205, 395, more/maps/1/brc202d.map, more/scenarios/1/brc202d.map.scen, 25, 100, timeout
+CBSSolver, 1871, 6.141, 6, 10, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 868, 7.037, 3, 4, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 868, 6.801, 7, 12, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 1871, 0.397, 10, 19, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 1871, 0.371, 10, 19, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 5, 100, success
+CBSSolver, 3090, 193.568, 320, 615, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 10, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 10, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 1599, 14.028, 25, 47, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 1643, 14.911, 47, 91, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 2161, 20.682, 269, 536, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 10, 100, success
+CBSSolver, -, 305.02, 109, 190, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 15, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 302.72, 32, 46, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 15, 5, timeout
+MetaAgCBSWithCBS, 2185, 121.906, 58, 109, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 15, 10, success
+MetaAgCBSWithCBS, 3116, 21.257, 279, 556, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 15, 100, success
+CBSSolver, -, 302.46, 73, 120, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 20, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 3921, 45.127, 44, 85, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 20, 5, success
+MetaAgCBSWithCBS, 3923, 68.556, 73, 143, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 20, 10, success
+MetaAgCBSWithCBS, 3923, 50.719, 583, 1163, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 20, 100, success
+CBSSolver, -, 304.51, 171, 287, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 25, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 25, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc203d.map, more/scenarios/1/brc203d.map.scen, 25, 100, Fail:object of type 'int' has no len()
+CBSSolver, 1821, 0.044, 2, 3, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 1821, 0.066, 3, 5, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 1821, 0.065, 3, 5, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 1821, 0.077, 3, 5, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 1821, 0.070, 3, 5, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 5, 100, success
+CBSSolver, 3030, 9.930, 5, 8, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 10, -, success
+MetaAgCBSWithCBS, 2143, 0.326, 4, 6, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 10, 1, success
+MetaAgCBSWithCBS, 2433, 0.519, 14, 26, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 3030, 0.338, 16, 31, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 3030, 0.350, 16, 31, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 10, 100, success
+CBSSolver, 3409, 20.635, 16, 30, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 15, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 2653, 0.762, 23, 44, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 15, 5, success
+MetaAgCBSWithCBS, 2322, 1.262, 43, 84, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 15, 10, success
+MetaAgCBSWithCBS, 2353, 10.522, 303, 604, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 15, 100, success
+CBSSolver, 6475, 41.744, 30, 55, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 20, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 20, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 20, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 20, 100, Fail:object of type 'int' has no len()
+CBSSolver, -, 300.16, 1528, 2289, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 25, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 25, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc204d.map, more/scenarios/1/brc204d.map.scen, 25, 100, Fail:object of type 'int' has no len()
+CBSSolver, 1204, 5.325, 3, 5, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 777, 10.466, 4, 6, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 1204, 10.372, 4, 7, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 1204, 10.519, 4, 7, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 1204, 10.556, 4, 7, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 5, 100, success
+CBSSolver, 1750, 1.765, 11, 19, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 10, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 10, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 1317, 0.320, 20, 38, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 1136, 0.377, 39, 76, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 1553, 3.013, 314, 626, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 10, 100, success
+CBSSolver, -, 300.0, 6728, 13457, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 15, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 15, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 15, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 304.62, 285, 551, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 15, 100, timeout
+CBSSolver, -, 301.6, 699, 1156, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 20, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 20, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 20, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 301.03, 467, 934, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 20, 100, timeout
+CBSSolver, -, 300.49, 337, 675, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 25, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 25, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 301.84, 464, 928, more/maps/1/brc300d.map, more/scenarios/1/brc300d.map.scen, 25, 100, timeout
+CBSSolver, 1209, 0.033, 2, 3, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 1209, 0.033, 2, 3, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 1209, 0.041, 2, 3, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 1209, 0.051, 2, 3, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 1209, 0.033, 2, 3, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 5, 100, success
+CBSSolver, 2811, 31.060, 4, 6, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 10, -, success
+MetaAgCBSWithCBS, 1696, 0.639, 4, 6, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 10, 1, success
+MetaAgCBSWithCBS, 2811, 0.190, 8, 15, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 2811, 0.191, 8, 15, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 2811, 0.188, 8, 15, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 10, 100, success
+CBSSolver, -, 300.05, 3351, 6703, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 15, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 308.34, 35, 49, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 15, 5, timeout
+MetaAgCBSWithCBS, -, 307.9, 51, 82, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 15, 10, timeout
+MetaAgCBSWithCBS, -, 313.88, 301, 583, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 15, 100, timeout
+CBSSolver, -, 300.03, 2648, 5297, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 20, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 5131, 1.198, 21, 40, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 20, 5, success
+MetaAgCBSWithCBS, -, 308.04, 46, 72, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 20, 10, timeout
+MetaAgCBSWithCBS, -, 311.29, 229, 439, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 20, 100, timeout
+CBSSolver, -, 325.7, 56, 70, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 25, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 328.25, 64, 110, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 25, 10, timeout
+MetaAgCBSWithCBS, -, 327.15, 437, 858, more/maps/1/brc501d.map, more/scenarios/1/brc501d.map.scen, 25, 100, timeout
+CBSSolver, 737, 0.023, 4, 7, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 475, 0.130, 6, 10, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 737, 0.037, 8, 15, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 737, 0.037, 8, 15, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 737, 0.062, 8, 15, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 5, 100, success
+CBSSolver, 888, 0.067, 7, 13, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 10, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 10, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 598, 0.136, 22, 42, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 607, 0.244, 43, 84, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 888, 0.279, 64, 127, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 10, 100, success
+CBSSolver, 1407, 1.877, 12, 21, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 15, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 1061, 0.283, 25, 48, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 15, 5, success
+MetaAgCBSWithCBS, 1086, 1.044, 35, 68, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 15, 10, success
+MetaAgCBSWithCBS, 1049, 26.750, 327, 652, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 15, 100, success
+CBSSolver, -, 300.03, 7160, 14321, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 20, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 20, 1, Fail:too many values to unpack (expected 4)
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 20, 5, Fail:too many values to unpack (expected 4)
+MetaAgCBSWithCBS, -, 302.15, 21, 23, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 20, 10, timeout
+MetaAgCBSWithCBS, -, 302.49, 111, 203, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 20, 100, timeout
+CBSSolver, -, 300.34, 579, 919, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 305.19, 30, 40, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 25, 5, timeout
+MetaAgCBSWithCBS, -, 305.28, 35, 51, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 25, 10, timeout
+MetaAgCBSWithCBS, -, 307.8, 125, 231, more/maps/1/brc502d.map, more/scenarios/1/brc502d.map.scen, 25, 100, timeout
+CBSSolver, 663, 0.008, 1, 1, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 663, 0.011, 1, 1, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 663, 0.012, 1, 1, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 663, 0.011, 1, 1, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 663, 0.012, 1, 1, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 5, 100, success
+CBSSolver, 1598, 0.057, 3, 5, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 10, -, success
+MetaAgCBSWithCBS, 1139, 0.200, 4, 6, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 10, 1, success
+MetaAgCBSWithCBS, 1598, 0.040, 4, 7, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 1598, 0.040, 4, 7, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 1598, 0.040, 4, 7, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 10, 100, success
+CBSSolver, 1977, 0.166, 6, 11, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 15, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 1571, 0.391, 15, 28, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 15, 5, success
+MetaAgCBSWithCBS, 1676, 0.527, 27, 52, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 15, 10, success
+MetaAgCBSWithCBS, 1977, 0.429, 32, 63, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 15, 100, success
+CBSSolver, -, 300.19, 2810, 5098, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 20, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 304.14, 33, 44, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 20, 5, timeout
+MetaAgCBSWithCBS, 3054, 25.061, 50, 98, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 20, 10, success
+MetaAgCBSWithCBS, -, 309.14, 164, 311, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 20, 100, timeout
+CBSSolver, -, 300.04, 3270, 6541, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 303.56, 25, 31, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 25, 5, timeout
+MetaAgCBSWithCBS, -, 303.64, 30, 41, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 25, 10, timeout
+MetaAgCBSWithCBS, -, 306.02, 124, 229, more/maps/1/brc997d.map, more/scenarios/1/brc997d.map.scen, 25, 100, timeout
+CBSSolver, 1454, 0.021, 1, 1, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 1454, 0.024, 1, 1, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 1454, 0.023, 1, 1, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 1454, 0.032, 1, 1, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 1454, 0.023, 1, 1, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 5, 100, success
+CBSSolver, 4196, 0.256, 5, 9, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 10, -, success
+MetaAgCBSWithCBS, 3168, 0.649, 4, 6, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 10, 1, success
+MetaAgCBSWithCBS, 3272, 1.046, 14, 26, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 4196, 0.424, 16, 31, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 4196, 0.424, 16, 31, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 10, 100, success
+CBSSolver, 4919, 14.024, 13, 25, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 15, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 15, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 3899, 66.745, 46, 90, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 15, 10, success
+MetaAgCBSWithCBS, 3974, 74.901, 258, 514, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 15, 100, success
+CBSSolver, 7234, 26.267, 16, 30, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 20, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 20, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 6549, 2.840, 38, 74, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 20, 10, success
+MetaAgCBSWithCBS, 6477, 11.122, 238, 474, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 20, 100, success
+CBSSolver, -, 300.02, 1587, 3175, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 310.1, 46, 69, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 25, 5, timeout
+MetaAgCBSWithCBS, -, 309.45, 67, 113, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 25, 10, timeout
+MetaAgCBSWithCBS, -, 311.94, 189, 359, more/maps/1/den000d.map, more/scenarios/1/den000d.map.scen, 25, 100, timeout
+CBSSolver, 528, 0.007, 1, 1, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 528, 0.011, 1, 1, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 528, 0.008, 1, 1, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 528, 0.007, 1, 1, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 528, 0.010, 1, 1, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 5, 100, success
+CBSSolver, 1140, 0.036, 3, 5, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 10, -, success
+MetaAgCBSWithCBS, 927, 0.113, 4, 6, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 10, 1, success
+MetaAgCBSWithCBS, 1140, 0.034, 4, 7, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 1140, 0.035, 4, 7, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 1140, 0.035, 4, 7, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 10, 100, success
+CBSSolver, -, 300.08, 322, 554, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 15, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 15, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 15, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 1542, 4.562, 211, 420, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 15, 100, success
+CBSSolver, 2251, 36.210, 137, 145, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 20, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 1873, 0.767, 20, 38, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 20, 5, success
+MetaAgCBSWithCBS, 1879, 0.954, 29, 56, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 20, 10, success
+MetaAgCBSWithCBS, 2251, 4.438, 99, 197, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 20, 100, success
+CBSSolver, -, 300.01, 4703, 9407, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 25, 1, Fail:too many values to unpack (expected 4)
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 25, 5, Fail:too many values to unpack (expected 4)
+MetaAgCBSWithCBS, -, 302.19, 23, 27, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 25, 10, timeout
+MetaAgCBSWithCBS, -, 302.78, 113, 207, more/maps/1/den001d.map, more/scenarios/1/den001d.map.scen, 25, 100, timeout
+CBSSolver, 1926, 16.168, 4, 6, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 924, 16.369, 3, 4, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 1926, 0.234, 7, 13, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 1926, 0.251, 7, 13, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 1926, 0.248, 7, 13, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 5, 100, success
+CBSSolver, 2654, 144.339, 91, 163, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 10, -, success
+MetaAgCBSWithCBS, 697, 77.326, 9, 12, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 10, 1, success
+MetaAgCBSWithCBS, 1835, 58.707, 17, 29, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 1835, 3.866, 22, 42, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 1515, 15.916, 202, 402, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 10, 100, success
+CBSSolver, 3165, 8.643, 12, 22, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 15, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 2211, 0.682, 27, 52, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 15, 5, success
+MetaAgCBSWithCBS, 2211, 0.885, 37, 72, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 15, 10, success
+MetaAgCBSWithCBS, 3165, 7.152, 294, 587, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 15, 100, success
+CBSSolver, -, 303.73, 64, 100, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 20, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 20, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 20, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 311.56, 548, 1096, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 20, 100, timeout
+CBSSolver, -, 300.05, 1403, 2804, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 25, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 305.21, 65, 110, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 25, 10, timeout
+MetaAgCBSWithCBS, -, 308.39, 206, 393, more/maps/1/den005d.map, more/scenarios/1/den005d.map.scen, 25, 100, timeout
+CBSSolver, 1231, 0.025, 1, 1, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 1231, 0.016, 1, 1, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 1231, 0.019, 1, 1, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 1231, 0.018, 1, 1, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 1231, 0.018, 1, 1, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 5, 100, success
+CBSSolver, 1733, 0.078, 4, 7, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 10, -, success
+MetaAgCBSWithCBS, 1255, 0.183, 6, 10, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 10, 1, success
+MetaAgCBSWithCBS, 1733, 0.104, 9, 17, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 1733, 0.095, 9, 17, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 1733, 0.093, 9, 17, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 10, 100, success
+CBSSolver, 2677, 146.602, 1150, 2060, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 15, -, success
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 15, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 15, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 15, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, 2128, 11.323, 328, 654, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 15, 100, success
+CBSSolver, -, 301.36, 2350, 4464, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 20, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 20, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 20, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 20, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 20, 100, Fail:object of type 'int' has no len()
+CBSSolver, -, 300.57, 654, 1097, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 25, -, timeout
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 25, 1, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 25, 5, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, -, -, -, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 25, 10, Fail:object of type 'int' has no len()
+MetaAgCBSWithCBS, -, 315.32, 587, 1169, more/maps/1/den011d.map, more/scenarios/1/den011d.map.scen, 25, 100, timeout
+CBSSolver, 1651, 0.038, 2, 3, more/maps/1/den012d.map, more/scenarios/1/den012d.map.scen, 5, -, success
+MetaAgCBSWithCBS, 1651, 0.035, 2, 3, more/maps/1/den012d.map, more/scenarios/1/den012d.map.scen, 5, 1, success
+MetaAgCBSWithCBS, 1651, 0.041, 2, 3, more/maps/1/den012d.map, more/scenarios/1/den012d.map.scen, 5, 5, success
+MetaAgCBSWithCBS, 1651, 0.036, 2, 3, more/maps/1/den012d.map, more/scenarios/1/den012d.map.scen, 5, 10, success
+MetaAgCBSWithCBS, 1651, 0.035, 2, 3, more/maps/1/den012d.map, more/scenarios/1/den012d.map.scen, 5, 100, success
+CBSSolver, 3141, 0.076, 2, 3, more/maps/1/den012d.map, more/scenarios/1/den012d.map.scen, 10, -, success
+MetaAgCBSWithCBS, 3141, 0.064, 2, 3, more/maps/1/den012d.map, more/scenarios/1/den012d.map.scen, 10, 1, success
+MetaAgCBSWithCBS, 3141, 0.130, 2, 3, more/maps/1/den012d.map, more/scenarios/1/den012d.map.scen, 10, 5, success
+MetaAgCBSWithCBS, 3141, 0.066, 2, 3, more/maps/1/den012d.map, more/scenarios/1/den012d.map.scen, 10, 10, success
+MetaAgCBSWithCBS, 3141, 0.064, 2, 3, more/maps/1/den012d.map, more/scenarios/1/den012d.map.scen, 10, 100, success
