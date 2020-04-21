@@ -7,6 +7,9 @@ from meta_agent_cbs_w_cbs import MetaAgCBSWithCBS
 from meta_agent_cbs_w_mstar import MetaAgCBSWithMstar
 from visualize import Animation
 from single_agent_planner import get_sum_of_cost
+import random
+from os import listdir
+from os.path import isfile, join
 
 def print_mapf_instance(my_map, starts, goals):
     print('Start locations')
@@ -90,20 +93,25 @@ def import_mapf_instance(map_file, scen_file, agents_limit = None):
     line = scen_f.readline()
     
     # load start and goal positions
-    agents_counting = 0
-    starts = []
-    goals = []
+    starts_all = []
+    goals_all = []
     while True:
         line = scen_f.readline()
         if not line:
             break
         tmp = line.split()
-        starts.append((int(tmp[5]), int(tmp[4])))
-        goals.append((int(tmp[7]), int(tmp[6])))
-        agents_counting += 1
-        if agents_limit != None and agents_counting >= agents_limit:
-            print("reach agents limit while loading agents info")
-            break
+        starts_all.append((int(tmp[5]), int(tmp[4])))
+        goals_all.append((int(tmp[7]), int(tmp[6])))
+
+    if len(starts_all) < agents_limit:
+        print("number of agents in scen smaller than agents_limit")
+        return my_map, starts_all, goals_all
+    
+    # randomly choose starts and goals
+    idx_list = list(range(len(starts_all)))
+    chosen_idx = random.choices(idx_list, k=agents_limit)
+    starts = [starts_all[m] for m in chosen_idx]
+    goals = [goals_all[m] for m in chosen_idx]
     
     return my_map, starts, goals 
 
@@ -121,29 +129,53 @@ if __name__ == '__main__':
 
     result_file = open("results.csv", "a", buffering=1)
     result_file.write("===================\n")
-    result_file.write("solver, cost, time, n_exp, n_gen, map_file, scen_file \n")
+    result_file.write("solver, cost, time, n_exp, n_gen, map_file, scen_file, agents_limit, conflict_bound \n")
 
     # config the maps and scenarios path
     # map_path = 'more/maps/random-32-32-10.map'
     # scen_path = 'more/scenarios/random-32-32-10-even-1.scen'
 
-    map_path = 'more/maps/den312d.map'
-    scen_path = 'more/scenarios/den312d-even-1.scen'
-    for map_file in sorted(glob.glob(map_path)):
-        for scen_file in sorted(glob.glob(scen_path)):
-            try:
-                print("***Import an instance***")
-                print("map file {}, scen file {} \n".format(map_file, scen_file))
-                my_map, starts, goals = import_mapf_instance(map_file, scen_file, agents_limit=10)
+    # map_path = 'more/maps/den312d.map'
+    # scen_path = 'more/scenarios/den312d-even-1.scen'
+
+    map_folder = 'more/maps/3/'
+    scen_folder = 'more/scenarios/3/'
+    map_files = [f for f in listdir(map_folder) if isfile(join(map_folder, f))]
+
+    # agents_limits = [5, 10, 15, 20, 25]
+    # conflict_bounds = [0, 1, 5, 10, 100]
+    agents_limits = [2, 3]
+    conflict_bounds = [1, 5]
+    for map_file_name in map_files:
+        if map_file_name == 'DS_Store':
+            continue
+        try:
+            print("***Import an instance***")
+            map_file = join(map_folder, map_file_name)
+            scen_file = join(scen_folder, map_file_name + ".scen")
+            # print(map_file, scen_file)
+            # exit()
+            for agents_limit in agents_limits:
+                
+                my_map, starts, goals = import_mapf_instance(map_file, scen_file, agents_limit=agents_limit)
                 # print_mapf_instance(my_map, starts, goals)
 
                 if args.solver == "all":
                     print("***Run CBS***")
-                    for solver in [CBSSolver,MetaAgCBSWithCBS, MetaAgCBSWithMstar]:
-                        sol = solver(my_map, starts, goals, args.merge_thresh)
-                        (paths, time, n_exp, n_gen) = sol.find_solution()
-                        cost = get_sum_of_cost(paths)
-                        result_file.write("{}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, cost, time, n_exp, n_gen, map_file.split('/')[2], scen_file.split('/')[2]))
+                    for solver_idx, solver in enumerate([CBSSolver, MetaAgCBSWithCBS, MetaAgCBSWithMstar]):
+                        if solver_idx == 0:
+                            print("map file {}, scen file {}, solver idx {}, agent limit {}, conflict bound {},   \n".format(map_file, scen_file, solver_idx, agents_limit, '-'))
+                            sol = solver(my_map, starts, goals, args.merge_thresh)
+                            (paths, time, n_exp, n_gen) = sol.find_solution()
+                            cost = get_sum_of_cost(paths)
+                            result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, cost, time, n_exp, n_gen, map_file, scen_file, agents_limit, '-'))
+                        else:
+                            for conflict_bound in conflict_bounds:
+                                print("map file {}, scen file {}, solver idx {}, agent limit {}, conflict bound {},   \n".format(map_file, scen_file, solver_idx, agents_limit, conflict_bound))
+                                sol = solver(my_map, starts, goals, conflict_bound)
+                                (paths, time, n_exp, n_gen) = sol.find_solution()
+                                cost = get_sum_of_cost(paths)
+                                result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, cost, time, n_exp, n_gen, map_file, scen_file, agents_limit, conflict_bound))
                 if args.solver == "CBS":
                     print("***Run CBS***")
                     cbs = CBSSolver(my_map, starts, goals, args.merge_thresh)
@@ -162,12 +194,12 @@ if __name__ == '__main__':
                 if args.solver != "all":
                     cost = get_sum_of_cost(paths)
                     result_file.write("{}, {}, {}, {}, {}, {}, {}\n".format(args.solver, cost, time, n_exp, n_gen, map_file.split('/')[2], scen_file.split('/')[2]))
-            
-            except Exception as e:
-                result_file.write("Exception {} on file {} , {}\n".format(e, map_file, scen_file))
+        
+        except Exception as e:
+            result_file.write("Exception {} on file {} , {}\n".format(e, map_file, scen_file))
 
-            if args.animation:
-                print("***Test paths on a simulation***")
-                animation = Animation(my_map, starts, goals, paths)
-                animation.show()
+        if args.animation:
+            print("***Test paths on a simulation***")
+            animation = Animation(my_map, starts, goals, paths)
+            animation.show()
     result_file.close()
