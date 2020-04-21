@@ -200,7 +200,7 @@ class MetaAgCBSWithMstar(object):
         # High-Level Search
         while len(self.open_list) > 0:
             if timer.time() - self.start_time  > 10:
-                raise Exception('time out')
+                raise Exception('timeout|'+str(self.num_of_expanded)+'|'+str(self.num_of_generated))
             curr = self.pop_node()
             new_collision = detect_collisions(curr['paths'], curr['groups'])
             if new_collision is None:

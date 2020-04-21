@@ -170,7 +170,9 @@ if __name__ == '__main__':
                             cost = get_sum_of_cost(paths)
                             result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, cost, time, n_exp, n_gen, map_file, scen_file, agents_limit, '-', 'success'))
                         except Exception as e:
-                            result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', '-', '-', map_file, scen_file, agents_limit, '-', 'fail'))
+                            print('Fail:', e)
+                            if(str(e).split('|')[0] == 'timeout'):
+                                result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', str(e).split('|')[1], str(e).split('|')[2], map_file, scen_file, agents_limit, '-', 'fail'))
                     else:
                         for conflict_bound in conflict_bounds:
                             try:
@@ -180,7 +182,9 @@ if __name__ == '__main__':
                                 cost = get_sum_of_cost(paths)
                                 result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, cost, time, n_exp, n_gen, map_file, scen_file, agents_limit, conflict_bound, 'success'))
                             except Exception as e:
-                                result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', '-', '-', map_file, scen_file, agents_limit, conflict_bound, 'fail'))
+                                print('Fail:', e)
+                                if(str(e).split('|')[0] == 'timeout'):
+                                    result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', str(e).split('|')[1], str(e).split('|')[2], map_file, scen_file, agents_limit, conflict_bound, 'fail'))
             if args.solver == "CBS":
                 print("***Run CBS***")
                 cbs = CBSSolver(my_map, starts, goals, args.merge_thresh)

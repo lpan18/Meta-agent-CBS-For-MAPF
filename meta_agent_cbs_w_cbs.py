@@ -180,6 +180,8 @@ class MetaAgCBSWithCBS(object):
 
         # High-Level Search
         while len(self.open_list) > 0:
+            if timer.time() - self.start_time  > 10:
+                raise Exception('timeout|'+str(self.num_of_expanded)+'|'+str(self.num_of_generated))
             # print("===high-level loop===")
             curr = self.pop_node()
             # print("curr", curr)
