@@ -3,9 +3,8 @@ import argparse
 import glob
 from pathlib import Path
 from cbs import CBSSolver
-from meta_agent_cbs import MetaAgentCBSSolver
-from meta_agent_cbs_w_cbs import MetaAgentCBSSolverWithCBS
-from meta_agent_cbs_w_mstar import MetaAgentCBSSolverWithMstar
+from meta_agent_cbs_w_cbs import MetaAgCBSWithCBS
+from meta_agent_cbs_w_mstar import MetaAgCBSWithMstar
 from visualize import Animation
 from single_agent_planner import get_sum_of_cost
 
@@ -77,15 +76,16 @@ if __name__ == '__main__':
                         help='Use batch output instead of animation')
     parser.add_argument('--disjoint', action='store_true', default=False,
                         help='Use the disjoint splitting')
-    parser.add_argument('-s', dest='solver', type=str, default="MetaCBS",
-                        help='The solver to use (one of: {CBS,MetaCBS,Independent,Prioritized}), defaults to MetaCBS')
+    parser.add_argument('-s', dest='solver', type=str, default="all",
+                        help='The solver to use (CBS, MetaCBSwCBS, MetaCBSwMstar), defaults to run all solvers')
     parser.add_argument('-b', dest='merge_thresh', type=int, default=10,
                         help='Merge threshold for Meta-CBS')
 
     args = parser.parse_args()
 
-
-    result_file = open("results.csv", "w", buffering=1)
+    result_file = open("results.csv", "a", buffering=1)
+    result_file.write("===================\n")
+    result_file.write("solver, cost, time, n_exp, n_gen, instance_file \n")
 
     for file in sorted(glob.glob(args.instance)):
     # for i in range(48,51):
@@ -96,33 +96,35 @@ if __name__ == '__main__':
             my_map, starts, goals = import_mapf_instance(file)
             # print_mapf_instance(my_map, starts, goals)
 
+            if args.solver == "all":
+                print("***Run CBS***")
+                for solver in [CBSSolver,MetaAgCBSWithCBS, MetaAgCBSWithMstar]:
+                    sol = solver(my_map, starts, goals, args.merge_thresh)
+                    (paths, time, n_exp, n_gen) = sol.find_solution()
+                    cost = get_sum_of_cost(paths)
+                    result_file.write("{}, {}, {}, {}, {}, {} \n".format(solver.__name__, cost, time, n_exp, n_gen, file))
             if args.solver == "CBS":
                 print("***Run CBS***")
-                cbs = CBSSolver(my_map, starts, goals)
-                paths = cbs.find_solution(args.disjoint)
-            elif args.solver == "MetaCBS":
-                print("***Run MetaCBS***")
-                ma_cbs = MetaAgentCBSSolver(my_map, starts, goals, args.merge_thresh)
-                paths = ma_cbs.find_solution()
+                cbs = CBSSolver(my_map, starts, goals, args.merge_thresh)
+                (paths, time, n_exp, n_gen) = cbs.find_solution()
             elif args.solver == "MetaCBSwCBS":
                 print("***Run MetaCBS with CBS as low level solver***")
-                ma_cbs = MetaAgentCBSSolverWithCBS(my_map, starts, goals, args.merge_thresh)
-                paths = ma_cbs.find_solution()
+                ma_cbs = MetaAgCBSWithCBS(my_map, starts, goals, args.merge_thresh)
+                (paths, time, n_exp, n_gen) = ma_cbs.find_solution()
                 print("***Finished Run MetaCBS with CBS as low level solver***")
             elif args.solver == "MetaCBSwMstar":
                 print("***Run MetaCBS with Mstar as low level solver***")
-                ma_cbs = MetaAgentCBSSolverWithMstar(my_map, starts, goals, args.merge_thresh)
-                paths = ma_cbs.find_solution()
+                ma_mstar = MetaAgCBSWithMstar(my_map, starts, goals, args.merge_thresh)
+                (paths, time, n_exp, n_gen) = ma_mstar.find_solution()
                 print("***Finished Run MetaCBS with Mstar as low level solver***")
-            else:
-                raise RuntimeError("Unknown solver!")
-
-            cost = get_sum_of_cost(paths)
-            result_file.write("{},{}\n".format(file, cost))
+            
+            if args.solver != "all":
+                cost = get_sum_of_cost(paths)
+                result_file.write("{}, {}, {}, {}, {}, {} \n".format(solver.__name__, cost, time, n_exp, n_gen, file))
         
         except Exception as e:
             result_file.write("Exception {} on file {}\n".format(e, file))
-        
+
         if not args.batch:
             print("***Test paths on a simulation***")
             animation = Animation(my_map, starts, goals, paths)

@@ -97,7 +97,7 @@ def paths_violate_constraint(constraint, paths):
 class CBSSolver(object):
     """The high-level search of CBS."""
 
-    def __init__(self, my_map, starts, goals):
+    def __init__(self, my_map, starts, goals, placeholder=None):
         """my_map   - list of lists specifying obstacle positions
         starts      - [(x1, y1), (x2, y2), ...] list of start locations
         goals       - [(x1, y1), (x2, y2), ...] list of goal locations
@@ -183,7 +183,8 @@ class CBSSolver(object):
             if len(curr['collisions']) == 0:
                 # print("Expanded nodes list: {}".format(str(expanded_nodes)))
                 # self.print_results(curr)
-                return curr['paths']
+                CPU_time = timer.time() - self.start_time
+                return (curr['paths'], "{:.03f}".format(CPU_time), self.num_of_expanded, self.num_of_generated)
             else:
                 collision = curr['collisions'][0]
                 # print("In parent collisions, pick one collision {}".format(collision))

@@ -119,7 +119,7 @@ def compute_paths(map, starts, goals, heuristics, agents_need_update, child, gro
         # print("path", path)
     return True
 
-class MetaAgentCBSSolverWithCBS(object):
+class MetaAgCBSWithCBS(object):
     """The high-level search of meta-agent CBS with CBS as low level solver."""
 
     def __init__(self, my_map, starts, goals, merge_thresh):
@@ -187,7 +187,8 @@ class MetaAgentCBSSolverWithCBS(object):
             if new_collision is None:
                 # print(curr['paths'])
                 self.print_results(curr)
-                return curr['paths']
+                CPU_time = timer.time() - self.start_time
+                return (curr['paths'], "{:.03f}".format(CPU_time), self.num_of_expanded, self.num_of_generated)
             # check should merge
             group_idx1 = new_collision['group1']
             group_idx2 = new_collision['group2']

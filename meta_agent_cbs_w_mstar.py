@@ -97,7 +97,7 @@ def flatten_constraints(constraints):
             flat_constraints[len(flat_constraints)-1]['agent'] = agent
     return flat_constraints
 
-class MetaAgentCBSSolverWithMstar(object):
+class MetaAgCBSWithMstar(object):
     """The high-level search of meta-agent CBS."""
 
     def __init__(self, my_map, starts, goals, merge_thresh):
@@ -206,7 +206,8 @@ class MetaAgentCBSSolverWithMstar(object):
             if new_collision is None:
                 # print(curr['paths'])
                 self.print_results(curr)
-                return curr['paths']
+                CPU_time = timer.time() - self.start_time
+                return (curr['paths'], "{:.03f}".format(CPU_time), self.num_of_expanded, self.num_of_generated)
             # check should merge
             group_idx1 = new_collision['group1']
             group_idx2 = new_collision['group2']
