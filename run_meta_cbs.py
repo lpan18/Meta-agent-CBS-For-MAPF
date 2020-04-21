@@ -144,7 +144,7 @@ if __name__ == '__main__':
 
     # agents_limits = [5, 10, 15, 20, 25]
     # conflict_bounds = [0, 1, 5, 10, 100]
-    agents_limits = [2, 3]
+    agents_limits = [5, 10]
     conflict_bounds = [1, 5]
     for map_file_name in map_files:
         if map_file_name == 'DS_Store':
@@ -172,7 +172,9 @@ if __name__ == '__main__':
                         except Exception as e:
                             print('Fail:', e)
                             if(str(e).split('|')[0] == 'timeout'):
-                                result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', str(e).split('|')[1], str(e).split('|')[2], map_file, scen_file, agents_limit, '-', 'fail'))
+                                result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', str(e).split('|')[1], str(e).split('|')[2], map_file, scen_file, agents_limit, '-', 'timeout'))
+                            else:
+                                result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', '-', '-', map_file, scen_file, agents_limit, '-', 'Fail:'+str(e)))
                     else:
                         for conflict_bound in conflict_bounds:
                             try:
@@ -184,7 +186,9 @@ if __name__ == '__main__':
                             except Exception as e:
                                 print('Fail:', e)
                                 if(str(e).split('|')[0] == 'timeout'):
-                                    result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', str(e).split('|')[1], str(e).split('|')[2], map_file, scen_file, agents_limit, conflict_bound, 'fail'))
+                                    result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', str(e).split('|')[1], str(e).split('|')[2], map_file, scen_file, agents_limit, conflict_bound, 'timeout'))
+                                else:
+                                    result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', '-', '-', map_file, scen_file, agents_limit, conflict_bound, 'Fail:'+str(e)))
             if args.solver == "CBS":
                 print("***Run CBS***")
                 cbs = CBSSolver(my_map, starts, goals, args.merge_thresh)
