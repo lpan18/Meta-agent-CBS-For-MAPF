@@ -138,14 +138,16 @@ if __name__ == '__main__':
     # map_path = 'more/maps/den312d.map'
     # scen_path = 'more/scenarios/den312d-even-1.scen'
 
-    map_folder = 'more/maps/3/'
-    scen_folder = 'more/scenarios/3/'
+    map_folder = 'more/maps/1/'
+    scen_folder = 'more/scenarios/1/'
     map_files = [f for f in listdir(map_folder) if isfile(join(map_folder, f))]
 
-    # agents_limits = [5, 10, 15, 20, 25]
-    # conflict_bounds = [0, 1, 5, 10, 100]
-    agents_limits = [5, 10]
-    conflict_bounds = [1, 5]
+    agents_limits = [5, 10, 15, 20, 25]
+    conflict_bounds = [0, 1, 5, 10, 100]
+    # agents_limits = [5, 10]
+    # conflict_bounds = [0, 1, 5]
+    total_cases = len(map_files)*(len(agents_limits)*len(conflict_bounds)*2+len(agents_limits))
+    counting = 0
     for map_file_name in map_files:
         if map_file_name == 'DS_Store':
             continue
@@ -163,6 +165,8 @@ if __name__ == '__main__':
                 print("***Run CBS***")
                 for solver_idx, solver in enumerate([CBSSolver, MetaAgCBSWithCBS, MetaAgCBSWithMstar]):
                     if solver_idx == 0:
+                        counting += 1
+                        print("process: {}%, {}/{}".format(round(float(counting/total_cases*100), 2), counting, total_cases))
                         print("map file {}, scen file {}, solver idx {}, agent limit {}, conflict bound {},   \n".format(map_file, scen_file, solver_idx, agents_limit, '-'))
                         try:
                             sol = solver(my_map, starts, goals, args.merge_thresh)
@@ -177,6 +181,8 @@ if __name__ == '__main__':
                                 result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', '-', '-', map_file, scen_file, agents_limit, '-', 'Fail:'+str(e)))
                     else:
                         for conflict_bound in conflict_bounds:
+                            counting += 1
+                            print("process: {}%, {}/{}".format(round(float(counting/total_cases*100), 2), counting, total_cases))
                             try:
                                 print("map file {}, scen file {}, solver idx {}, agent limit {}, conflict bound {},   \n".format(map_file, scen_file, solver_idx, agents_limit, conflict_bound))
                                 sol = solver(my_map, starts, goals, conflict_bound)

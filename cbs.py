@@ -178,7 +178,7 @@ class CBSSolver(object):
         # expanded_nodes = [] 
         while len(self.open_list) > 0:
             if meta_constraints is None:
-                if timer.time() - self.start_time  > 10:
+                if timer.time() - self.start_time  > 300:
                     raise Exception('timeout|'+str(self.num_of_expanded)+'|'+str(self.num_of_generated))
             # print("Open list: {}".format(self.open_list))
             curr = self.pop_node()
