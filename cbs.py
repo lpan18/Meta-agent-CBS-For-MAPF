@@ -220,9 +220,8 @@ class CBSSolver(object):
         # print("Expanded nodes list: {}".format(str(expanded_nodes)))
         if meta_constraints != None:
             return None
-        # self.print_results(root)
-        return root['paths']
-
+        else:
+            raise Exception('no solutions|'+str(self.num_of_expanded)+'|'+str(self.num_of_generated)+'|'+str(round(timer.time()-self.start_time, 2)))
 
     def print_results(self, node):
         print("\n Found a solution! \n")

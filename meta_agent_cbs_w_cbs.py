@@ -92,8 +92,9 @@ def flatten_constraints(constraints):
 
 """Low-level search"""
 def compute_paths(map, starts, goals, heuristics, agents_need_update, child, group_idx=None):
-    if len(agents_need_update) == 1:
-        agent = agents_need_update[0]
+    if isinstance(agents_need_update, int) or len(agents_need_update) == 1:
+        if isinstance(agents_need_update, list):
+            agent = agents_need_update[0]
         path = a_star(map, starts[agent], goals[agent], heuristics[agent], agent, flatten_constraints(child['constraints']))
         if path is None:
             return False
@@ -111,8 +112,10 @@ def compute_paths(map, starts, goals, heuristics, agents_need_update, child, gro
                     # print('agents:', constraint['agent'])
                     # print('mapping:', agents_mapping)
                     meta_constraints[len(meta_constraints)-1]['agent'] = agents_mapping[agent]
-        path = cbs.find_solution(meta_constraints=meta_constraints)
-        if path is None:
+        result = cbs.find_solution(meta_constraints=meta_constraints)
+        if isinstance(result, tuple):
+            path = result[0]
+        elif result is None:
             return False
         for (idx, m) in enumerate(agents_need_update):
             child['paths'][m] = path[idx]
@@ -221,8 +224,7 @@ class MetaAgCBSWithCBS(object):
                     if keep:
                         child['cost'] = get_sum_of_cost(child['paths'])
                         self.push_node(child)
-        self.print_results(root)
-        return root['paths']
+        raise Exception('No Solutions|'+str(self.num_of_expanded)+'|'+str(self.num_of_generated)+'|'+str(round(timer.time()-self.start_time, 2)))
 
 
     def print_results(self, node):
