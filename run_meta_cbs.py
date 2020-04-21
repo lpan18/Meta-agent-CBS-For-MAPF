@@ -129,7 +129,7 @@ if __name__ == '__main__':
 
     result_file = open("results.csv", "a", buffering=1)
     result_file.write("===================\n")
-    result_file.write("solver, cost, time, n_exp, n_gen, map_file, scen_file, agents_limit, conflict_bound \n")
+    result_file.write("solver, cost, time, n_exp, n_gen, map_file, scen_file, agents_limit, conflict_bound, success \n")
 
     # config the maps and scenarios path
     # map_path = 'more/maps/random-32-32-10.map'
@@ -149,54 +149,56 @@ if __name__ == '__main__':
     for map_file_name in map_files:
         if map_file_name == 'DS_Store':
             continue
-        try:
-            print("***Import an instance***")
-            map_file = join(map_folder, map_file_name)
-            scen_file = join(scen_folder, map_file_name + ".scen")
-            # print(map_file, scen_file)
-            # exit()
-            for agents_limit in agents_limits:
-                
-                my_map, starts, goals = import_mapf_instance(map_file, scen_file, agents_limit=agents_limit)
-                # print_mapf_instance(my_map, starts, goals)
+        print("***Import an instance***")
+        map_file = join(map_folder, map_file_name)
+        scen_file = join(scen_folder, map_file_name + ".scen")
+        # print(map_file, scen_file)
+        # exit()
+        for agents_limit in agents_limits:
+            
+            my_map, starts, goals = import_mapf_instance(map_file, scen_file, agents_limit=agents_limit)
+            # print_mapf_instance(my_map, starts, goals)
 
-                if args.solver == "all":
-                    print("***Run CBS***")
-                    for solver_idx, solver in enumerate([CBSSolver, MetaAgCBSWithCBS, MetaAgCBSWithMstar]):
-                        if solver_idx == 0:
-                            print("map file {}, scen file {}, solver idx {}, agent limit {}, conflict bound {},   \n".format(map_file, scen_file, solver_idx, agents_limit, '-'))
+            if args.solver == "all":
+                print("***Run CBS***")
+                for solver_idx, solver in enumerate([CBSSolver, MetaAgCBSWithCBS, MetaAgCBSWithMstar]):
+                    if solver_idx == 0:
+                        print("map file {}, scen file {}, solver idx {}, agent limit {}, conflict bound {},   \n".format(map_file, scen_file, solver_idx, agents_limit, '-'))
+                        try:
                             sol = solver(my_map, starts, goals, args.merge_thresh)
                             (paths, time, n_exp, n_gen) = sol.find_solution()
                             cost = get_sum_of_cost(paths)
-                            result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, cost, time, n_exp, n_gen, map_file, scen_file, agents_limit, '-'))
-                        else:
-                            for conflict_bound in conflict_bounds:
+                            result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, cost, time, n_exp, n_gen, map_file, scen_file, agents_limit, '-', 'success'))
+                        except Exception as e:
+                            result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', '-', '-', map_file, scen_file, agents_limit, '-', 'fail'))
+                    else:
+                        for conflict_bound in conflict_bounds:
+                            try:
                                 print("map file {}, scen file {}, solver idx {}, agent limit {}, conflict bound {},   \n".format(map_file, scen_file, solver_idx, agents_limit, conflict_bound))
                                 sol = solver(my_map, starts, goals, conflict_bound)
                                 (paths, time, n_exp, n_gen) = sol.find_solution()
                                 cost = get_sum_of_cost(paths)
-                                result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, cost, time, n_exp, n_gen, map_file, scen_file, agents_limit, conflict_bound))
-                if args.solver == "CBS":
-                    print("***Run CBS***")
-                    cbs = CBSSolver(my_map, starts, goals, args.merge_thresh)
-                    (paths, time, n_exp, n_gen) = cbs.find_solution()
-                elif args.solver == "MetaCBSwCBS":
-                    print("***Run MetaCBS with CBS as low level solver***")
-                    ma_cbs = MetaAgCBSWithCBS(my_map, starts, goals, args.merge_thresh)
-                    (paths, time, n_exp, n_gen) = ma_cbs.find_solution()
-                    print("***Finished Run MetaCBS with CBS as low level solver***")
-                elif args.solver == "MetaCBSwMstar":
-                    print("***Run MetaCBS with Mstar as low level solver***")
-                    ma_mstar = MetaAgCBSWithMstar(my_map, starts, goals, args.merge_thresh)
-                    (paths, time, n_exp, n_gen) = ma_mstar.find_solution()
-                    print("***Finished Run MetaCBS with Mstar as low level solver***")
-                
-                if args.solver != "all":
-                    cost = get_sum_of_cost(paths)
-                    result_file.write("{}, {}, {}, {}, {}, {}, {}\n".format(args.solver, cost, time, n_exp, n_gen, map_file.split('/')[2], scen_file.split('/')[2]))
-        
-        except Exception as e:
-            result_file.write("Exception {} on file {} , {}\n".format(e, map_file, scen_file))
+                                result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, cost, time, n_exp, n_gen, map_file, scen_file, agents_limit, conflict_bound, 'success'))
+                            except Exception as e:
+                                result_file.write("{}, {}, {}, {}, {}, {}, {}, {}, {}, {}\n".format(solver.__name__, '-', '-', '-', '-', map_file, scen_file, agents_limit, conflict_bound, 'fail'))
+            if args.solver == "CBS":
+                print("***Run CBS***")
+                cbs = CBSSolver(my_map, starts, goals, args.merge_thresh)
+                (paths, time, n_exp, n_gen) = cbs.find_solution()
+            elif args.solver == "MetaCBSwCBS":
+                print("***Run MetaCBS with CBS as low level solver***")
+                ma_cbs = MetaAgCBSWithCBS(my_map, starts, goals, args.merge_thresh)
+                (paths, time, n_exp, n_gen) = ma_cbs.find_solution()
+                print("***Finished Run MetaCBS with CBS as low level solver***")
+            elif args.solver == "MetaCBSwMstar":
+                print("***Run MetaCBS with Mstar as low level solver***")
+                ma_mstar = MetaAgCBSWithMstar(my_map, starts, goals, args.merge_thresh)
+                (paths, time, n_exp, n_gen) = ma_mstar.find_solution()
+                print("***Finished Run MetaCBS with Mstar as low level solver***")
+            
+            if args.solver != "all":
+                cost = get_sum_of_cost(paths)
+                result_file.write("{}, {}, {}, {}, {}, {}, {}\n".format(args.solver, cost, time, n_exp, n_gen, map_file.split('/')[2], scen_file.split('/')[2]))
 
         if args.animation:
             print("***Test paths on a simulation***")
